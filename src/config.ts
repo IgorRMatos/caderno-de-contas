@@ -36,8 +36,8 @@ export const LOCALE_INTL: Record<Idioma, string> = {
   en: 'en-US',
 };
 
-/** D4 — URL do LinkedIn do autor, pendente do Console Master. */
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/placeholder-console-master';
+/** D4 — URL do LinkedIn do autor (resolvida pelo Console Master em 2026-11-04). */
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/igor-m-892254b8/';
 
 /** Limite de linhas de planilha suportado numa importação (CA01.4). */
 export const LIMITE_LINHAS_IMPORTACAO = 5000;

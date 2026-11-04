@@ -28,7 +28,7 @@ export function Footer() {
       </div>
       <div class="signature">
         <span class="hand">{t('assinatura.texto')}</span>
-        <a href={LINKEDIN_URL} rel="noopener" target="_blank">
+        <a href={LINKEDIN_URL} rel="noopener noreferrer" target="_blank">
           <ExternalLink class="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
           {t('assinatura.linkedin')}
         </a>
