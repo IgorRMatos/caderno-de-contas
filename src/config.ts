@@ -26,6 +26,16 @@ export function moedaAtiva(idioma: Idioma): string {
   return MOEDA_FIXA ?? MOEDA_POR_IDIOMA[idioma];
 }
 
+/**
+ * Tag BCP-47 completa para chamadas de `Intl` — evita depender de defaults
+ * ambíguos de locale "sem país" (ex.: `es` genérico vs. `es-ES`).
+ */
+export const LOCALE_INTL: Record<Idioma, string> = {
+  'pt-BR': 'pt-BR',
+  es: 'es-ES',
+  en: 'en-US',
+};
+
 /** D4 — URL do LinkedIn do autor, pendente do Console Master. */
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/placeholder-console-master';
 

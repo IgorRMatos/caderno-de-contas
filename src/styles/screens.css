@@ -51,7 +51,9 @@
   background: var(--sheet);
   border: 2px dashed var(--ink-2);
   border-radius: 10px 4px 12px 6px;
-  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
     transform var(--dur) var(--ease);
 }
 .dropzone .icon {
