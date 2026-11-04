@@ -1,6 +1,8 @@
 import { LoaderCircle, Upload } from 'lucide-preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { t } from '../i18n/index.js';
+import { NADA, realcarDropzone } from '../motion/index.js';
+import { useMovimento } from './useMovimento.js';
 import {
   estadoDropzone,
   linhasLendo,
@@ -60,6 +62,15 @@ export function Dropzone() {
   }
 
   const estado = estadoDropzone.value;
+  const zonaRef = useRef<HTMLDivElement>(null);
+  // UX §7 — arrastando: a zona cresce/inclina e o ícone pula (some com reduced-motion)
+  useMovimento(
+    () =>
+      estado === 'arrastando'
+        ? realcarDropzone(zonaRef.current, zonaRef.current?.querySelector('.icon'))
+        : NADA,
+    [estado],
+  );
   const classeEstado =
     estado === 'arrastando'
       ? 'is-over'
@@ -71,6 +82,7 @@ export function Dropzone() {
 
   return (
     <div
+      ref={zonaRef}
       class={`dropzone ${classeEstado}`.trim()}
       onDragOver={(ev) => ev.preventDefault()}
       onDrop={aoSoltarNaZona}

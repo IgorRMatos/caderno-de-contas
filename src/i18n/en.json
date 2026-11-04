@@ -84,7 +84,8 @@
     "margemFrase": "For every {cem} that came in, you kept {x}.",
     "margemSemEntrada": "Nothing came in this month, so there's no margin to calculate.",
     "aMaisQue": "{p}% more",
-    "aMenosQue": "{p}% less"
+    "aMenosQue": "{p}% less",
+    "tituloMes": "{mes} · what you kept"
   },
   "manchete": {
     "positiva": "{mes} was good. You kept {valor}, {p}% more than {mesAnterior}.",
@@ -194,6 +195,9 @@
     "dadosCorrompidos": "Part of your saved data was damaged. I kept a backup copy and started a fresh notebook.",
     "erroArquivo": "I couldn't read this file. Try a CSV or XLSX.",
     "fecharAviso": "Close notice"
+  },
+  "anuncios": {
+    "cadernoPronto": "Your notebook is ready."
   },
   "apagar": {
     "botao": "Delete my data",

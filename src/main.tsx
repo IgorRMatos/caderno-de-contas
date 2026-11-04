@@ -1,6 +1,7 @@
 import { effect } from '@preact/signals';
 import { render } from 'preact';
 import { App } from './App.js';
+import { abrirCaderno, instalarPressaoBotoes } from './motion/index.js';
 import { carregarIdioma, t } from './i18n/index.js';
 import { iniciarGuardaDeRotas } from './router.js';
 import { idioma } from './state/signals.js';
@@ -34,6 +35,11 @@ async function iniciar(): Promise<void> {
   iniciarGuardaDeRotas();
 
   render(<App />, document.getElementById('app')!);
+
+  // CA14.2 — a folha abre como caderno (só transform: a manchete/LCP já está pintada)
+  const folha = document.getElementById('conteudo');
+  if (folha) abrirCaderno(folha, document.querySelector<HTMLElement>('.topbar'));
+  instalarPressaoBotoes();
 }
 
 void iniciar();

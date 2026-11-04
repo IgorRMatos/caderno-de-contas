@@ -1,5 +1,6 @@
 import type { ComponentChildren, RefObject } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
+import { abrirDialogo, type Handle } from '../motion/index.js';
 
 export interface DialogProps {
   aberto: boolean;
@@ -35,6 +36,7 @@ export function Dialog({
 }: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const origemRef = useRef<HTMLElement | null>(null);
+  const animRef = useRef<Handle | null>(null);
 
   useEffect(() => {
     const el = dialogRef.current;
@@ -43,7 +45,10 @@ export function Dialog({
       origemRef.current = document.activeElement as HTMLElement | null;
       el.showModal();
       (focoInicialRef?.current ?? el).focus();
+      // UX §7 — painel desliza (x 100% → 0), diálogo cresce (.96 → 1) + fade
+      animRef.current = abrirDialogo(el, variante);
     } else if (!aberto && el.open) {
+      animRef.current?.kill();
       el.close();
     }
   }, [aberto, focoInicialRef]);

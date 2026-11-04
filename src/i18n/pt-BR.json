@@ -84,7 +84,8 @@
     "margemFrase": "De cada {cem} que entraram, sobraram {x}.",
     "margemSemEntrada": "Neste mês não entrou nada, então não dá para calcular a margem.",
     "aMaisQue": "{p}% a mais",
-    "aMenosQue": "{p}% a menos"
+    "aMenosQue": "{p}% a menos",
+    "tituloMes": "{mes} · quanto sobrou"
   },
   "manchete": {
     "positiva": "{mes} foi bom. Sobrou {valor}, {p}% a mais que {mesAnterior}.",
@@ -194,6 +195,9 @@
     "dadosCorrompidos": "Parte dos dados salvos estava estragada. Guardei uma cópia de segurança e comecei um caderno novo.",
     "erroArquivo": "Não consegui ler esse arquivo. Tente um CSV ou XLSX.",
     "fecharAviso": "Fechar aviso"
+  },
+  "anuncios": {
+    "cadernoPronto": "Seu caderno está pronto."
   },
   "apagar": {
     "botao": "Apagar meus dados",

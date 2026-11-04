@@ -84,7 +84,8 @@
     "margemFrase": "De cada {cem} que entraron, te quedaron {x}.",
     "margemSemEntrada": "Este mes no entró nada, así que no se puede calcular el margen.",
     "aMaisQue": "{p}% más",
-    "aMenosQue": "{p}% menos"
+    "aMenosQue": "{p}% menos",
+    "tituloMes": "{mes} · cuánto te quedó"
   },
   "manchete": {
     "positiva": "{mes} fue un buen mes. Te quedaron {valor}, un {p}% más que en {mesAnterior}.",
@@ -194,6 +195,9 @@
     "dadosCorrompidos": "Parte de los datos guardados estaba dañada. Guardé una copia de seguridad y empecé un cuaderno nuevo.",
     "erroArquivo": "No pude leer este archivo. Prueba con un CSV o XLSX.",
     "fecharAviso": "Cerrar aviso"
+  },
+  "anuncios": {
+    "cadernoPronto": "Tu cuaderno está listo."
   },
   "apagar": {
     "botao": "Borrar mis datos",

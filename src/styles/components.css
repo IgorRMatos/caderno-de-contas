@@ -436,18 +436,8 @@
   height: 4px;
   width: 100%;
   transform-origin: left;
-  animation: toast-bar var(--toast-duracao, 4s) linear forwards;
-}
-.toast .bar.is-paused {
-  animation-play-state: paused;
-}
-@keyframes toast-bar {
-  from {
-    transform: scaleX(1);
-  }
-  to {
-    transform: scaleX(0);
-  }
+  /* D16 — a barra reversa é animada pelo JS (motion/anime.ts → toastBarra),
+     pausável e mantida com reduced-motion. Sem JS ela fica cheia, nunca some. */
 }
 .toast.ok {
   background: var(--post-ok);
@@ -667,9 +657,6 @@
   .btn:hover {
     transform: none;
   }
-  /* D16/UX §7: a barra do toast é informação de tempo, não enfeite — continua
-     rodando (e pausável) mesmo com prefers-reduced-motion. */
-  .toast .bar {
-    animation-duration: var(--toast-duracao, 4s) !important;
-  }
+  /* A barra do toast continua com reduced-motion: é animada por JS
+     (toastBarra), não por CSS, então esta regra não a afeta. */
 }
