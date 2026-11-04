@@ -1,0 +1,215 @@
+{
+  "marca": "Cuaderno de cuentas",
+  "meta": {
+    "titulo": "Cuaderno de cuentas — ¿cuánto te quedó este mes?",
+    "descricao": "Sube la planilla que ya usas y mira en segundos cuánto entró, cuánto salió y cuánto te quedó. Sin registro. Todo se calcula en tu navegador."
+  },
+  "header": {
+    "mudarParaClaro": "Cambiar a tema claro",
+    "mudarParaEscuro": "Cambiar a tema oscuro",
+    "idiomaAtual": "Idioma: {idioma}",
+    "escolherIdioma": "Elige el idioma",
+    "pularParaConteudo": "Saltar al contenido"
+  },
+  "idiomas": {
+    "pt-BR": "Português",
+    "es": "Español",
+    "en": "English",
+    "pt-BR_completo": "Brasil (Português)",
+    "es_completo": "España (Español)",
+    "en_completo": "USA (English)"
+  },
+  "inicio": {
+    "h1": "¿Cuánto te quedó este mes? Muéstrame la planilla y te lo cuento.",
+    "apoio": "Subes la planilla que ya usas y, en segundos, ves cuánto entró, cuánto salió y adónde fue el dinero. Sin jerga de contador.",
+    "ctaExemplo": "Ver con datos de ejemplo",
+    "ctaModelo": "Descargar planilla modelo",
+    "ctaEscolher": "Elegir archivo",
+    "notaMargem1": "¡sin registro, sin contraseña!",
+    "notaMargem2": "¿nombres distintos? no hay problema, lo ajustamos juntos.",
+    "assimJaFunciona": "así ya funciona ↓"
+  },
+  "privacidade": {
+    "curta": "Tu planilla no sale de esta computadora. Todo se calcula aquí en el navegador y queda guardado solo en él.",
+    "rodape": "Tus cuentas se quedan contigo. Todo se calcula aquí en tu navegador y queda guardado solo en él. Ningún número sale de esta máquina, y no tengo servidor para guardar nada.",
+    "completa": "Tus cuentas se quedan contigo. Todo se calcula aquí en tu navegador y queda guardado solo en él. Ningún número sale de esta máquina, y no tengo servidor para guardar nada. Si lo abres en otro aparato, el cuaderno va a estar en blanco."
+  },
+  "dropzone": {
+    "titulo": "Arrastra tu planilla hasta aquí",
+    "ou": "o",
+    "escolherArquivo": "Elegir archivo",
+    "formatos": "CSV o XLSX · hasta 5.000 filas",
+    "podeSoltar": "¡Puedes soltarla! Yo me encargo del resto.",
+    "lendo": "Leyendo tu planilla…",
+    "lendoDetalhe": "{nome} · {linhas} filas · nada de esto sale de tu computadora",
+    "ilegivelTitulo": "No pude leer este archivo.",
+    "ilegivelApoio": "Prueba con un CSV o XLSX…",
+    "tentarOutro": "Probar con otro archivo"
+  },
+  "somar": {
+    "titulo": "Ya tienes cuentas en este cuaderno",
+    "corpo": "Ya tienes {n} movimientos guardados aquí. La planilla nueva trae {m}. ¿Qué hago con ellos?",
+    "somar": "Sumar a los actuales",
+    "substituir": "Reemplazar todo",
+    "dica": "sumar puede duplicar datos si es la misma planilla"
+  },
+  "mapeamento": {
+    "titulo": "Tu planilla usa otros nombres. ¿Me ayudas a leerla?",
+    "apoio": "Ya adiviné lo que pude. Revisa cada palpite y elige la columna que falta. Solo fecha y monto son obligatorios. El resto lo resuelvo yo.",
+    "palpiteMeu": "mi palpite",
+    "naoTenhoColuna": "— no tengo esa columna —",
+    "perguntaValor": "¿Qué columna tiene el dinero?",
+    "faltaCampo": "Falta solo una cosa: decirme qué columna es {campo}.",
+    "montar": "Armar mi cuaderno →",
+    "campoData": "la fecha",
+    "campoDescricao": "la descripción",
+    "campoValor": "el monto",
+    "campoTipo": "entrada o salida",
+    "campoCategoria": "la categoría"
+  },
+  "banner": {
+    "texto": "Estás hojeando un cuaderno de ejemplo: {nome}, {n} meses de cuentas.",
+    "trocar": "Cambiar por mi planilla"
+  },
+  "indicadores": {
+    "quantoSobrou": "Cuánto te quedó",
+    "faltou": "Faltaron {valor}",
+    "quantoEntrou": "Cuánto entró",
+    "quantoSaiu": "Cuánto salió",
+    "margem": "margen {p}%",
+    "margemTraco": "margen —",
+    "margemFrase": "De cada 100 € que entraron, te quedaron {x} €.",
+    "margemSemEntrada": "Este mes no entró nada, así que no se puede calcular el margen.",
+    "aMaisQue": "{p}% más",
+    "aMenosQue": "{p}% menos"
+  },
+  "manchete": {
+    "positiva": "{mes} fue un buen mes. Te quedaron {valor}, un {p}% más que en {mesAnterior}.",
+    "neutra": "{mes} te quedaron {valor}, un {p}% menos que en {mesAnterior}. Sigues en azul.",
+    "negativa": "{mes} fue duro: salió {valor} más de lo que entró. Pasa.",
+    "semComparacao": "{mes} te quedaron {valor}."
+  },
+  "insights": {
+    "resumo_positivo": "{mes} fue un buen mes. Te quedaron {valor}, un {percentual}% más que en {mesAnterior}.",
+    "resumo_negativo": "{mes} fue duro: salió {valor} más de lo que entró. Pasa.",
+    "resumo_neutro": "{mes} te quedaron {valor}, un {percentual}% menos que en {mesAnterior}. Sigues en azul.",
+    "resumo_sem_comparacao": "{mes} te quedaron {valor}.",
+    "maior_categoria": "Tu mayor gasto en {mes} fue {categoria}: el {percentual}% de las salidas.",
+    "categoria_subindo": "Ojo: {categoria} subió un {percentual}% respecto al promedio de los últimos 3 meses.",
+    "mes_vermelho_historico": "{mes} cerró en rojo: faltaron {valor}.",
+    "projecao_azul": "Si sigues a este ritmo, {mes} debería cerrar en azul, con un sobrante cercano a {valor}.",
+    "projecao_vermelho": "Si sigues a este ritmo, {mes} podría cerrar en rojo; conviene cuidar los gastos.",
+    "melhorMesDosUltimosSeis": "¡el mejor mes de los últimos seis!",
+    "deOlho": "Ojo:"
+  },
+  "secoes": {
+    "oQueNotei": "Lo que noté",
+    "entrouSaiu": "Entró × salió, mes a mes",
+    "ultimosMeses": "últimos {n} meses",
+    "paraOndeFoi": "Adónde fue",
+    "saidasDoMes": "salidas de {mes}",
+    "proximosMeses": "¿Y los próximos 3 meses?",
+    "aLapis": "a lápiz, porque es una estimación",
+    "livroCaixa": "Libro de caja",
+    "verNumerosTabela": "Ver los números en tabla",
+    "verTodos": "Ver todos ({n})",
+    "novoLancamento": "Nuevo movimiento"
+  },
+  "projecao": {
+    "legenda": "Estimación (promedio de {m1} a {m3})",
+    "oQueSobrouDeVerdade": "Lo que realmente quedó",
+    "explicacao": "No es una predicción del futuro: es lo que pasa si los próximos meses repiten el promedio de los últimos tres.",
+    "poucosMeses_one": "Hecha con solo {n} mes. Cuantos más meses, mejor el cálculo.",
+    "poucosMeses_other": "Hecha con solo {n} meses. Cuantos más meses, mejor el cálculo.",
+    "estimativa": "~{valor} por mes",
+    "semDados": "Todavía es pronto para adivinar. Anota algunos meses y calculo la estimación."
+  },
+  "filtros": {
+    "periodo": "Período",
+    "ultimoMes": "Último mes",
+    "ultimos3": "Últimos 3 meses",
+    "esteAno": "Este año",
+    "tudo": "Todo",
+    "categorias": "Categorías",
+    "todas": "Todas",
+    "aplicar": "Aplicar",
+    "olhando": "Viendo:",
+    "limpar": "Limpiar filtros",
+    "removerFiltro": "Quitar filtro {nome}",
+    "zeroResultados": "No hay nada anotado con estos filtros. En {mes} no hay ningún movimiento de {categoria}. ¿Qué tal ver todo el año?"
+  },
+  "lancamento": {
+    "anotarNoCaderno": "Anotar en el cuaderno",
+    "issoFoi": "Esto fue…",
+    "entrada": "Entrada",
+    "saida": "Salida",
+    "valor": "Monto",
+    "descricao": "Descripción",
+    "descricaoPlaceholder": "Ej.: Harina, factura de luz, venta de mostrador",
+    "data": "Fecha",
+    "categoria": "Categoría",
+    "criarCategoria": "+ Crear categoría…",
+    "nomeDaCategoria": "Nombre de la categoría",
+    "anotar": "Anotar",
+    "corrigirTitulo": "Corregir movimiento",
+    "salvarCorrecao": "Guardar corrección",
+    "cancelar": "Cancelar",
+    "editar": "Editar {descricao}",
+    "excluir": "Eliminar {descricao}"
+  },
+  "erros": {
+    "valorFaltando": "Falta el monto. ¿Cuánto fue?",
+    "valorMaiorQueZero": "El monto tiene que ser mayor que cero.",
+    "valorApenasNumeros": "Usa solo números, ej.: 12,50",
+    "dataFaltando": "¿Qué día fue esto?",
+    "categoriaNome": "Dale un nombre a la categoría."
+  },
+  "exclusao": {
+    "faixa": "Eliminé {descricao} ({valor}). Los números ya se recalcularon.",
+    "desfazer": "Deshacer"
+  },
+  "vazios": {
+    "semFiltro": "No hay nada anotado con estos filtros",
+    "aindaCedo": "Todavía es pronto para adivinar",
+    "aindaConhecendo": "Todavía estoy conociendo tu negocio",
+    "paginaEmBrancoTitulo": "Tu cuaderno está vacío.",
+    "paginaEmBrancoApoio": "Sube una planilla o anota el primer movimiento a mano."
+  },
+  "toasts": {
+    "importado_one": "Planilla importada: {n} movimiento.",
+    "importado_other": "Planilla importada: {n} movimientos.",
+    "anotado": "Anotado",
+    "corrigido": "Corregido",
+    "copiaBaixada": "Copia descargada",
+    "cadernoZerado": "Cuaderno reiniciado",
+    "semCategoria_one": "{n} fila sin categoría fue a Otros.",
+    "semCategoria_other": "{n} filas sin categoría fueron a Otros.",
+    "linhasInvalidas_one": "{n} fila sin fecha o monto quedó fuera. El resto entró normalmente.",
+    "linhasInvalidas_other": "{n} filas sin fecha o monto quedaron fuera. El resto entró normalmente.",
+    "semStorage": "Este navegador no me está dejando guardar (pestaña privada o memoria llena). Tus cuentas quedan aquí hasta que cierres la pestaña. Exporta antes de salir.",
+    "dadosCorrompidos": "Parte de los datos guardados estaba dañada. Guardé una copia de seguridad y empecé un cuaderno nuevo.",
+    "erroArquivo": "No pude leer este archivo. Prueba con un CSV o XLSX.",
+    "fecharAviso": "Cerrar aviso"
+  },
+  "apagar": {
+    "botao": "Borrar mis datos",
+    "titulo": "¿Arrancar todas las hojas?",
+    "corpo_one": "Voy a borrar {n} movimiento y {k} categorías que creaste. No se puede deshacer, porque no guardo copia en ningún lado.",
+    "corpo_other": "Voy a borrar {n} movimientos y {k} categorías que creaste. No se puede deshacer, porque no guardo copia en ningún lado.",
+    "naoManter": "No, conservar todo",
+    "exportarAntes": "Exportar antes",
+    "simApagar": "Sí, borrar todo",
+    "exportarMeusDados": "Exportar mis datos"
+  },
+  "assinatura": {
+    "texto": "hecho a mano por Igor Rodrigues de Matos",
+    "linkedin": "Escríbeme en LinkedIn"
+  },
+  "graficos": {
+    "fluxoDescricao": "Entradas y salidas de {m1} a {m2}. En todos los meses quedó dinero, menos en {mesRuim}, cuando faltaron {valorRuim}. {melhorMes} tuvo el mayor sobrante: {valorMelhor}.",
+    "projecaoDescricao": "Cuánto quedó por mes de {m1} a {m2} y estimación para los 3 meses siguientes: cerca de {valor} por mes, según el promedio de {baseM1} a {baseM3}.",
+    "entrou": "Entró",
+    "saiu": "Salió",
+    "sobrou": "quedó"
+  }
+}

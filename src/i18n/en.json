@@ -1,0 +1,215 @@
+{
+  "marca": "The Ledger Notebook",
+  "meta": {
+    "titulo": "The Ledger Notebook — how much did you keep this month?",
+    "descricao": "Upload the spreadsheet you already use and see in seconds how much came in, how much went out, and what you kept. No sign-up. Everything runs in your browser."
+  },
+  "header": {
+    "mudarParaClaro": "Switch to light theme",
+    "mudarParaEscuro": "Switch to dark theme",
+    "idiomaAtual": "Language: {idioma}",
+    "escolherIdioma": "Choose a language",
+    "pularParaConteudo": "Skip to content"
+  },
+  "idiomas": {
+    "pt-BR": "Português",
+    "es": "Español",
+    "en": "English",
+    "pt-BR_completo": "Brazil (Português)",
+    "es_completo": "Spain (Español)",
+    "en_completo": "USA (English)"
+  },
+  "inicio": {
+    "h1": "How much did you keep this month? Show me the spreadsheet and I'll tell you.",
+    "apoio": "Upload the spreadsheet you already use and, in seconds, see how much came in, how much went out, and where the money went. No accountant jargon.",
+    "ctaExemplo": "See it with sample data",
+    "ctaModelo": "Download sample spreadsheet",
+    "ctaEscolher": "Choose file",
+    "notaMargem1": "no sign-up, no password!",
+    "notaMargem2": "different column names? no problem, we'll sort it out together.",
+    "assimJaFunciona": "it already works like this ↓"
+  },
+  "privacidade": {
+    "curta": "Your spreadsheet never leaves this computer. Everything is calculated right here in the browser and stays only here.",
+    "rodape": "Your numbers stay with you. Everything is calculated right here in your browser and stored only there. No number leaves this machine, and I don't have a server to store anything.",
+    "completa": "Your numbers stay with you. Everything is calculated right here in your browser and stored only there. No number leaves this machine, and I don't have a server to store anything. If you open it on another device, the notebook will be blank."
+  },
+  "dropzone": {
+    "titulo": "Drag your spreadsheet here",
+    "ou": "or",
+    "escolherArquivo": "Choose file",
+    "formatos": "CSV or XLSX · up to 5,000 rows",
+    "podeSoltar": "Go ahead and drop it! I've got the rest.",
+    "lendo": "Reading your spreadsheet…",
+    "lendoDetalhe": "{nome} · {linhas} rows · none of this leaves your computer",
+    "ilegivelTitulo": "I couldn't read this file.",
+    "ilegivelApoio": "Try a CSV or XLSX…",
+    "tentarOutro": "Try another file"
+  },
+  "somar": {
+    "titulo": "This notebook already has entries",
+    "corpo": "You already have {n} entries saved here. The new spreadsheet brings {m}. What should I do with them?",
+    "somar": "Add to current entries",
+    "substituir": "Replace everything",
+    "dica": "adding may create duplicates if it's the same spreadsheet"
+  },
+  "mapeamento": {
+    "titulo": "Your spreadsheet uses different names. Help me read it?",
+    "apoio": "I already guessed what I could. Check each guess and pick the column that's missing. Only date and amount are required. I'll figure out the rest.",
+    "palpiteMeu": "my guess",
+    "naoTenhoColuna": "— I don't have this column —",
+    "perguntaValor": "Which column has the money?",
+    "faltaCampo": "Just one thing missing: tell me which column is the {campo}.",
+    "montar": "Build my notebook →",
+    "campoData": "date",
+    "campoDescricao": "description",
+    "campoValor": "amount",
+    "campoTipo": "money in or out",
+    "campoCategoria": "category"
+  },
+  "banner": {
+    "texto": "You're browsing a sample notebook: {nome}, {n} months of entries.",
+    "trocar": "Switch to my spreadsheet"
+  },
+  "indicadores": {
+    "quantoSobrou": "What you kept",
+    "faltou": "You fell short by {valor}",
+    "quantoEntrou": "How much came in",
+    "quantoSaiu": "How much went out",
+    "margem": "margin {p}%",
+    "margemTraco": "margin —",
+    "margemFrase": "For every $100 that came in, you kept ${x}.",
+    "margemSemEntrada": "Nothing came in this month, so there's no margin to calculate.",
+    "aMaisQue": "{p}% more",
+    "aMenosQue": "{p}% less"
+  },
+  "manchete": {
+    "positiva": "{mes} was good. You kept {valor}, {p}% more than {mesAnterior}.",
+    "neutra": "{mes} you kept {valor}, {p}% less than {mesAnterior}. Still in the black.",
+    "negativa": "{mes} was tight: {valor} more went out than came in. It happens.",
+    "semComparacao": "{mes} you kept {valor}."
+  },
+  "insights": {
+    "resumo_positivo": "{mes} was good. You kept {valor}, {percentual}% more than {mesAnterior}.",
+    "resumo_negativo": "{mes} was tight: {valor} more went out than came in. It happens.",
+    "resumo_neutro": "{mes} you kept {valor}, {percentual}% less than {mesAnterior}. Still in the black.",
+    "resumo_sem_comparacao": "{mes} you kept {valor}.",
+    "maior_categoria": "Your biggest expense in {mes} was {categoria}: {percentual}% of what went out.",
+    "categoria_subindo": "Heads up: {categoria} is up {percentual}% compared to the average of the last 3 months.",
+    "mes_vermelho_historico": "{mes} closed in the red: you fell short by {valor}.",
+    "projecao_azul": "If this pace continues, {mes} should close in the black, with about {valor} left over.",
+    "projecao_vermelho": "If this pace continues, {mes} could close in the red; worth keeping an eye on spending.",
+    "melhorMesDosUltimosSeis": "the best month in the last six!",
+    "deOlho": "Heads up:"
+  },
+  "secoes": {
+    "oQueNotei": "What I noticed",
+    "entrouSaiu": "In vs. out, month by month",
+    "ultimosMeses": "last {n} months",
+    "paraOndeFoi": "Where it went",
+    "saidasDoMes": "{mes} expenses",
+    "proximosMeses": "What about the next 3 months?",
+    "aLapis": "in pencil, because it's an estimate",
+    "livroCaixa": "Cash book",
+    "verNumerosTabela": "See the numbers in a table",
+    "verTodos": "See all ({n})",
+    "novoLancamento": "New entry"
+  },
+  "projecao": {
+    "legenda": "Estimate (average of {m1} to {m3})",
+    "oQueSobrouDeVerdade": "What you actually kept",
+    "explicacao": "This isn't a forecast of the future: it's what happens if the next few months repeat the average of the last three.",
+    "poucosMeses_one": "Based on just {n} month. The more months, the better the guess.",
+    "poucosMeses_other": "Based on just {n} months. The more months, the better the guess.",
+    "estimativa": "~{valor} a month",
+    "semDados": "It's still too early to guess. Log a few months and I'll work out an estimate."
+  },
+  "filtros": {
+    "periodo": "Period",
+    "ultimoMes": "Last month",
+    "ultimos3": "Last 3 months",
+    "esteAno": "This year",
+    "tudo": "All",
+    "categorias": "Categories",
+    "todas": "All",
+    "aplicar": "Apply",
+    "olhando": "Looking at:",
+    "limpar": "Clear filters",
+    "removerFiltro": "Remove filter {nome}",
+    "zeroResultados": "Nothing logged with these filters. In {mes} there's no {categoria} entry. How about looking at the whole year?"
+  },
+  "lancamento": {
+    "anotarNoCaderno": "Log an entry",
+    "issoFoi": "This was…",
+    "entrada": "Money in",
+    "saida": "Money out",
+    "valor": "Amount",
+    "descricao": "Description",
+    "descricaoPlaceholder": "E.g.: Flour, electric bill, counter sale",
+    "data": "Date",
+    "categoria": "Category",
+    "criarCategoria": "+ Create category…",
+    "nomeDaCategoria": "Category name",
+    "anotar": "Log it",
+    "corrigirTitulo": "Edit entry",
+    "salvarCorrecao": "Save changes",
+    "cancelar": "Cancel",
+    "editar": "Edit {descricao}",
+    "excluir": "Delete {descricao}"
+  },
+  "erros": {
+    "valorFaltando": "Amount is missing. How much was it?",
+    "valorMaiorQueZero": "The amount needs to be greater than zero.",
+    "valorApenasNumeros": "Use numbers only, e.g.: 12.50",
+    "dataFaltando": "What day was this?",
+    "categoriaNome": "Give the category a name."
+  },
+  "exclusao": {
+    "faixa": "Deleted {descricao} ({valor}). The numbers have already been recalculated.",
+    "desfazer": "Undo"
+  },
+  "vazios": {
+    "semFiltro": "Nothing logged with these filters",
+    "aindaCedo": "Too early to guess",
+    "aindaConhecendo": "Still getting to know your business",
+    "paginaEmBrancoTitulo": "Your notebook is empty.",
+    "paginaEmBrancoApoio": "Upload a spreadsheet or log the first entry by hand."
+  },
+  "toasts": {
+    "importado_one": "Spreadsheet imported: {n} entry.",
+    "importado_other": "Spreadsheet imported: {n} entries.",
+    "anotado": "Logged",
+    "corrigido": "Updated",
+    "copiaBaixada": "Copy downloaded",
+    "cadernoZerado": "Notebook reset",
+    "semCategoria_one": "{n} row with no category went to Other.",
+    "semCategoria_other": "{n} rows with no category went to Other.",
+    "linhasInvalidas_one": "{n} row with no date or amount was left out. The rest came in fine.",
+    "linhasInvalidas_other": "{n} rows with no date or amount were left out. The rest came in fine.",
+    "semStorage": "This browser isn't letting me save (private tab or full storage). Your entries stay here until you close the tab. Export before you leave.",
+    "dadosCorrompidos": "Part of your saved data was damaged. I kept a backup copy and started a fresh notebook.",
+    "erroArquivo": "I couldn't read this file. Try a CSV or XLSX.",
+    "fecharAviso": "Close notice"
+  },
+  "apagar": {
+    "botao": "Delete my data",
+    "titulo": "Tear out every page?",
+    "corpo_one": "I'll delete {n} entry and {k} categories you created. There's no undo, because I don't keep a copy anywhere.",
+    "corpo_other": "I'll delete {n} entries and {k} categories you created. There's no undo, because I don't keep a copy anywhere.",
+    "naoManter": "No, keep everything",
+    "exportarAntes": "Export first",
+    "simApagar": "Yes, delete everything",
+    "exportarMeusDados": "Export my data"
+  },
+  "assinatura": {
+    "texto": "handmade by Igor Rodrigues de Matos",
+    "linkedin": "Reach me on LinkedIn"
+  },
+  "graficos": {
+    "fluxoDescricao": "Money in and out from {m1} to {m2}. Every month had something left over, except {mesRuim}, when you fell short by {valorRuim}. {melhorMes} had the biggest leftover: {valorMelhor}.",
+    "projecaoDescricao": "What was left per month from {m1} to {m2}, and an estimate for the next 3 months: around {valor} a month, based on the average of {baseM1} to {baseM3}.",
+    "entrou": "In",
+    "saiu": "Out",
+    "sobrou": "left over"
+  }
+}

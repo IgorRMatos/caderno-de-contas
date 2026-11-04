@@ -1,5 +1,6 @@
 import { effect } from '@preact/signals';
 import { IDIOMAS, type Idioma } from '../config.js';
+import { detectarIdiomaInicial } from '../i18n/index.js';
 import { criarStorage, type StorageCaderno } from '../storage/index.js';
 import { categorias, filtros, FILTROS_PADRAO, idioma, lancamentos, tema, ui } from './signals.js';
 
@@ -43,7 +44,12 @@ export function iniciarPersistencia(): PersistenciaIniciada {
   categorias.value = carga.categorias;
   filtros.value = carga.filtros ?? FILTROS_PADRAO;
   if (carga.tema) tema.value = carga.tema;
-  if (carga.idioma && idiomaValido(carga.idioma)) idioma.value = carga.idioma;
+  if (carga.idioma && idiomaValido(carga.idioma)) {
+    // CA10.4 — escolha salva tem prioridade sobre a detecção do navegador.
+    idioma.value = carga.idioma;
+  } else {
+    idioma.value = detectarIdiomaInicial(navigator.languages ?? [navigator.language]);
+  }
 
   ui.value = {
     storageOk: storage.disponivel,
