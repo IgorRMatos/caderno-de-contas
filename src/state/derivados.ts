@@ -2,6 +2,7 @@ import { computed } from '@preact/signals';
 import { categoriasDoMes, fluxoMensal, kpisDoMes } from '../domain/aggregate.js';
 import {
   aplicarFiltroCategorias,
+  filtroResultaVazio,
   resolverJanelaExibicao,
   resolverMesReferencia,
 } from '../domain/filters.js';
@@ -22,8 +23,19 @@ export const janelaExibicao = computed(() =>
   resolverJanelaExibicao(lancamentosComCategoria.value, filtros.value.periodo),
 );
 
-/** CA08.5 — true quando o filtro atual não deixa nenhum lançamento para mostrar. */
-export const filtroVazio = computed(() => mesReferencia.value === null);
+/** true quando não há NENHUM lançamento no app (distinto de "filtro vazio" — CA08.5). */
+export const temDados = computed(() => lancamentos.value.length > 0);
+
+/**
+ * CA08.5 — true quando HÁ dados no app, mas o filtro atual (período + categoria)
+ * não deixa nenhum lançamento para mostrar. Precisa ser distinto de `temDados`:
+ * `mesReferencia === null` sozinho não basta, porque também fica `null` quando
+ * o filtro de categoria zera tudo (ver `resolverMesReferencia`) — nesse caso o
+ * app não deve voltar para o início (isso é papel só de "nunca houve dados").
+ */
+export const filtroVazio = computed(
+  () => temDados.value && filtroResultaVazio(lancamentosComCategoria.value, filtros.value.periodo),
+);
 
 export const kpisAtuais = computed(() => {
   const mes = mesReferencia.value;

@@ -1,10 +1,12 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import {
   categoriasDoMesAtual,
+  filtroVazio,
   insightsAtuais,
   kpisAtuais,
   mesReferencia,
   projecaoAtual,
+  temDados,
 } from '../../../src/state/derivados';
 import { filtros, FILTROS_PADRAO, lancamentos } from '../../../src/state/signals';
 import { construirLancamentosPadaria } from '../domain/_fixtures/padaria';
@@ -53,5 +55,28 @@ describe('state/derivados — filtrados → agregados → insights (T4)', () => 
     lancamentos.value = construirLancamentosPadaria();
     expect(projecaoAtual.value?.semDados).toBe(false);
     expect(insightsAtuais.value.insights.some((i) => i.chave.startsWith('projecao_'))).toBe(true);
+  });
+
+  it('temDados: false sem nenhum lançamento, true com a Padaria', () => {
+    expect(temDados.value).toBe(false);
+    lancamentos.value = construirLancamentosPadaria();
+    expect(temDados.value).toBe(true);
+  });
+
+  it('filtroVazio: false sem dados nenhum (isso é "nunca houve dados", não "filtro vazio")', () => {
+    expect(filtroVazio.value).toBe(false);
+  });
+
+  it('filtroVazio: true quando um filtro de categoria zera a lista, mas mesReferencia NÃO fica null por isso — CA08.5 não pode voltar para o início por causa de um filtro', () => {
+    lancamentos.value = construirLancamentosPadaria();
+    filtros.value = { periodo: { tipo: 'ultimo-mes' }, categorias: ['categoria-inexistente'] };
+    expect(filtroVazio.value).toBe(true);
+    expect(temDados.value).toBe(true);
+  });
+
+  it('filtroVazio: false quando a categoria filtrada tem dados no mês', () => {
+    lancamentos.value = construirLancamentosPadaria();
+    filtros.value = { periodo: { tipo: 'ultimo-mes' }, categorias: ['aluguel'] };
+    expect(filtroVazio.value).toBe(false);
   });
 });

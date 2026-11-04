@@ -1,5 +1,5 @@
 import { effect, signal } from '@preact/signals';
-import { mesReferencia } from './state/derivados.js';
+import { temDados } from './state/derivados.js';
 
 export type Rota = '/' | '/mapeamento' | '/caderno' | '/livro-caixa' | '/seus-dados';
 
@@ -30,10 +30,15 @@ export function navegar(rota: Rota): void {
   }
 }
 
-/** Sem dados, #/caderno não faz sentido: volta para o início (TECH.md §2 "Rotas"). */
+/**
+ * Sem NENHUM lançamento no app, #/caderno não faz sentido: volta para o início
+ * (TECH.md §2 "Rotas"). Usa `temDados` (não `mesReferencia`) de propósito: um
+ * filtro que zera a lista (CA08.5) deve mostrar o estado vazio dentro do
+ * dashboard, não chutar o usuário de volta para o início.
+ */
 export function iniciarGuardaDeRotas(): () => void {
   return effect(() => {
-    if (rotaAtual.value === '/caderno' && mesReferencia.value === null) {
+    if (rotaAtual.value === '/caderno' && !temDados.value) {
       navegar('/');
     }
   });

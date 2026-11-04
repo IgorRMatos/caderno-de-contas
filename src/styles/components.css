@@ -201,6 +201,41 @@
 .lang-list li[aria-selected='true'] .check {
   visibility: visible;
 }
+
+/* dropdown genérico (filtros de período/categoria, T9) — mesma linguagem visual da .lang-list */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-painel {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  z-index: 30;
+  min-width: 240px;
+  margin: 0;
+  padding: var(--s3);
+  background: var(--sheet);
+  border: 1.5px solid var(--ink-2);
+  border-radius: 4px;
+  box-shadow: var(--shadow-paper);
+}
+.dropdown-painel .opcao {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 44px;
+  padding: 0 var(--s2);
+  cursor: pointer;
+  border-radius: 3px;
+}
+.dropdown-painel .opcao:hover {
+  background: var(--paper);
+}
+.dropdown-painel .opcao input {
+  width: 18px;
+  height: 18px;
+}
 @media (max-width: 599px) {
   .lang-btn .lang-name {
     display: none;
