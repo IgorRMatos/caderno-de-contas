@@ -9,6 +9,7 @@ import { DialogoSomarSubstituir } from './ui/DialogoSomarSubstituir.js';
 import { Footer } from './ui/Footer.js';
 import { Header } from './ui/Header.js';
 import { LiveRegion } from './ui/LiveRegion.js';
+import { PainelLancamento } from './ui/PainelLancamento.js';
 import { Toasts } from './ui/Toasts.js';
 
 const TELAS: Record<Rota, ComponentType> = {
@@ -32,6 +33,7 @@ export function App() {
       <Toasts />
       <LiveRegion />
       <DialogoSomarSubstituir />
+      <PainelLancamento />
     </div>
   );
 }

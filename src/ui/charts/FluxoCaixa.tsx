@@ -95,10 +95,21 @@ export function FluxoCaixa() {
         <h2 id={idTitulo}>{t('secoes.entrouSaiu')}</h2>
         <span class="hand">{t('secoes.ultimosMeses', { n: meses.length })}</span>
       </div>
-      <svg class="chart" viewBox={`0 0 ${largura} ${ALTURA}`} role="img" aria-labelledby={`${idTitulo} ${idDesc}`}>
+      <svg
+        class="chart"
+        viewBox={`0 0 ${largura} ${ALTURA}`}
+        role="img"
+        aria-labelledby={`${idTitulo} ${idDesc}`}
+      >
         <desc id={idDesc}>{descricaoFluxo(meses, idiomaAtual)}</desc>
         <defs>
-          <pattern id="hatch-in" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <pattern
+            id="hatch-in"
+            width="6"
+            height="6"
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(45)"
+          >
             <line x1="0" y1="0" x2="0" y2="6" style={{ stroke: 'var(--olive)' }} stroke-width="2" />
           </pattern>
         </defs>
@@ -129,7 +140,13 @@ export function FluxoCaixa() {
               <g key={m.anoMes} tabindex={0} role="img" aria-label={rotulo}>
                 <title>{rotulo}</title>
                 <rect class="bar-in" x={xIn} y={yIn} width={LARGURA_BARRA} height={EIXO_Y - yIn} />
-                <rect class="bar-out" x={xOut} y={yOut} width={LARGURA_BARRA} height={EIXO_Y - yOut} />
+                <rect
+                  class="bar-out"
+                  x={xOut}
+                  y={yOut}
+                  width={LARGURA_BARRA}
+                  height={EIXO_Y - yOut}
+                />
               </g>
             );
           })}
@@ -141,7 +158,12 @@ export function FluxoCaixa() {
             const xLabel = (xIn + xOut + LARGURA_BARRA) / 2;
             const ehUltimo = i === meses.length - 1;
             return (
-              <text key={m.anoMes} x={xLabel} y="220" style={ehUltimo ? { fontWeight: 700, fill: 'var(--ink)' } : undefined}>
+              <text
+                key={m.anoMes}
+                x={xLabel}
+                y="220"
+                style={ehUltimo ? { fontWeight: 700, fill: 'var(--ink)' } : undefined}
+              >
                 {formatarMesAbreviado(m.anoMes, idiomaAtual)}
               </text>
             );
@@ -152,7 +174,12 @@ export function FluxoCaixa() {
             const xLabel = (xIn + xOut + LARGURA_BARRA) / 2;
             const sinal = m.sobrouCentavos >= 0 ? '+' : '';
             return (
-              <text key={m.anoMes} class={`saldo${m.sobrouCentavos < 0 ? ' neg' : ''}`} x={xLabel} y="246">
+              <text
+                key={m.anoMes}
+                class={`saldo${m.sobrouCentavos < 0 ? ' neg' : ''}`}
+                x={xLabel}
+                y="246"
+              >
                 {sinal}
                 {formatarCompacto(m.sobrouCentavos, idiomaAtual)}
               </text>

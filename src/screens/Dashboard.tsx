@@ -1,4 +1,5 @@
-import { ArrowDown, ArrowUp } from 'lucide-preact';
+import { ArrowDown, ArrowUp, Plus } from 'lucide-preact';
+import { useRef } from 'preact/hooks';
 import { formatarMesPorExtenso } from '../domain/dates.js';
 import { formatarMoeda } from '../domain/money.js';
 import { t } from '../i18n/index.js';
@@ -8,14 +9,18 @@ import {
   insightsAtuais,
   kpisAtuais,
   kpisMesAnterior,
+  lancamentosDoMesAtual,
   mesReferencia,
 } from '../state/derivados.js';
+import { abrirNovoLancamento } from '../state/painelLancamento.js';
 import { categorias, filtros, idioma } from '../state/signals.js';
+import { navegar } from '../router.js';
 import { BannerExemplo } from '../ui/BannerExemplo.js';
 import { FluxoCaixa } from '../ui/charts/FluxoCaixa.js';
 import { Projecao } from '../ui/charts/Projecao.js';
 import { Filtros } from '../ui/Filtros.js';
 import { textoInsight } from '../ui/insightTexto.js';
+import { Ledger } from '../ui/Ledger.js';
 
 function Variacao({ percentual, direcao }: { percentual: number; direcao: 'up' | 'down' }) {
   const Icone = direcao === 'up' ? ArrowUp : ArrowDown;
@@ -27,8 +32,8 @@ function Variacao({ percentual, direcao }: { percentual: number; direcao: 'up' |
   );
 }
 
-/** CA08.5 — há lançamentos no app, mas o filtro atual (período + categoria) não deixa nenhum. */
-function FiltroVazio() {
+/** CA08.5 — há lançamentos no app, mas o filtro atual (período + categoria) não deixa nenhum. Reaproveitado pelo livro-caixa (T11). */
+export function FiltroVazio() {
   const nomesCategorias = filtros.value.categorias
     .map((id) => categorias.value.find((c) => c.id === id)?.nome ?? id)
     .join(', ');
@@ -60,9 +65,12 @@ export function Dashboard() {
   );
 }
 
+const LIMITE_LEDGER_PREVIEW = 4;
+
 function ConteudoDashboard() {
   const mes = mesReferencia.value;
   const kpis = kpisAtuais.value;
+  const novoBtnRef = useRef<HTMLButtonElement>(null);
   if (mes === null || kpis === null) return null;
 
   const kpisAnterior = kpisMesAnterior.value;
@@ -103,14 +111,20 @@ function ConteudoDashboard() {
           <span class="t">{t('indicadores.quantoEntrou')}</span>
           <span class="v">{formatarMoeda(kpis.entrouCentavos, idioma.value)}</span>
           {variacaoEntrou !== null && (
-            <Variacao percentual={Math.abs(variacaoEntrou)} direcao={variacaoEntrou >= 0 ? 'up' : 'down'} />
+            <Variacao
+              percentual={Math.abs(variacaoEntrou)}
+              direcao={variacaoEntrou >= 0 ? 'up' : 'down'}
+            />
           )}
         </div>
         <div class="row out">
           <span class="t">{t('indicadores.quantoSaiu')}</span>
           <span class="v">{formatarMoeda(kpis.saiuCentavos, idioma.value)}</span>
           {variacaoSaiu !== null && (
-            <Variacao percentual={Math.abs(variacaoSaiu)} direcao={variacaoSaiu >= 0 ? 'down' : 'up'} />
+            <Variacao
+              percentual={Math.abs(variacaoSaiu)}
+              direcao={variacaoSaiu >= 0 ? 'down' : 'up'}
+            />
           )}
         </div>
         <div class="row margin">
@@ -153,11 +167,14 @@ function ConteudoDashboard() {
       <section class="categories">
         <div class="sec-title">
           <h2>{t('secoes.paraOndeFoi')}</h2>
-          <span class="hand">{t('secoes.saidasDoMes', { mes: formatarMesPorExtenso(mes, idioma.value) })}</span>
+          <span class="hand">
+            {t('secoes.saidasDoMes', { mes: formatarMesPorExtenso(mes, idioma.value) })}
+          </span>
         </div>
         <ul class="cat-list">
           {categoriasDoMesAtual.value.map((c) => {
-            const nome = categorias.value.find((cat) => cat.id === c.categoria)?.nome ?? c.categoria;
+            const nome =
+              categorias.value.find((cat) => cat.id === c.categoria)?.nome ?? c.categoria;
             return (
               <li key={c.categoria}>
                 <div class="line">
@@ -176,6 +193,32 @@ function ConteudoDashboard() {
       </section>
 
       <Projecao />
+
+      <section class="ledger">
+        <div class="sec-title">
+          <h2>{t('secoes.livroCaixa')}</h2>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              class="btn btn-ink"
+              ref={novoBtnRef}
+              onClick={abrirNovoLancamento}
+            >
+              <Plus class="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
+              {t('secoes.novoLancamento')}
+            </button>
+            <button type="button" class="btn btn-ghost" onClick={() => navegar('/livro-caixa')}>
+              {t('secoes.verTodos', { n: lancamentosDoMesAtual.value.length })}
+            </button>
+          </div>
+        </div>
+        <Ledger
+          lancamentos={lancamentosDoMesAtual.value.slice(0, LIMITE_LEDGER_PREVIEW)}
+          categorias={categorias.value}
+          novoBtnRef={novoBtnRef}
+          legendaSrOnly={t('secoes.saidasDoMes', { mes: formatarMesPorExtenso(mes, idioma.value) })}
+        />
+      </section>
     </div>
   );
 }

@@ -93,7 +93,8 @@ export function Projecao() {
     x: x(n + i),
     y: escala.paraY(p.sobrouCentavos),
   }));
-  const linhaProj = pontosReais.length > 0 ? [pontosReais[pontosReais.length - 1]!, ...pontosProj] : pontosProj;
+  const linhaProj =
+    pontosReais.length > 0 ? [pontosReais[pontosReais.length - 1]!, ...pontosProj] : pontosProj;
 
   const faixaBanda =
     projecao.desvioPadraoSobrouCentavos > 0
@@ -104,17 +105,15 @@ export function Projecao() {
               projecao.mesesProjetados[i]!.sobrouCentavos + projecao.desvioPadraoSobrouCentavos,
             ),
           })),
-          ...[...pontosProj]
-            .reverse()
-            .map((_, j) => {
-              const i = pontosProj.length - 1 - j;
-              return {
-                x: x(n + i),
-                y: escala.paraY(
-                  projecao.mesesProjetados[i]!.sobrouCentavos - projecao.desvioPadraoSobrouCentavos,
-                ),
-              };
-            }),
+          ...[...pontosProj].reverse().map((_, j) => {
+            const i = pontosProj.length - 1 - j;
+            return {
+              x: x(n + i),
+              y: escala.paraY(
+                projecao.mesesProjetados[i]!.sobrouCentavos - projecao.desvioPadraoSobrouCentavos,
+              ),
+            };
+          }),
         ]
       : [];
 
@@ -131,7 +130,12 @@ export function Projecao() {
           {t('projecao.poucosMeses', { n: projecao.baseMeses.length })}
         </p>
       )}
-      <svg class="chart" viewBox={`0 0 ${largura} ${ALTURA}`} role="img" aria-labelledby={`${idTitulo} ${idDesc}`}>
+      <svg
+        class="chart"
+        viewBox={`0 0 ${largura} ${ALTURA}`}
+        role="img"
+        aria-labelledby={`${idTitulo} ${idDesc}`}
+      >
         <desc id={idDesc}>{descricaoProjecao(reais, projecao, idiomaAtual)}</desc>
         {ticks.map((valorTick) => (
           <line
@@ -149,7 +153,13 @@ export function Projecao() {
           </text>
         ))}
         {escala.min < 0 && (
-          <line class="zero" x1={MARGEM_ESQUERDA} x2={largura} y1={escala.paraY(0)} y2={escala.paraY(0)} />
+          <line
+            class="zero"
+            x1={MARGEM_ESQUERDA}
+            x2={largura}
+            y1={escala.paraY(0)}
+            y2={escala.paraY(0)}
+          />
         )}
 
         {faixaBanda.length > 0 && <polygon class="proj-band" points={poligonoPontos(faixaBanda)} />}
@@ -172,7 +182,12 @@ export function Projecao() {
           return (
             <g key={f.anoMes} tabindex={0} role="img" aria-label={rotulo}>
               <title>{rotulo}</title>
-              <circle class={`dot${f.sobrouCentavos < 0 ? ' neg' : ''}`} cx={p.x} cy={p.y} r={4.5} />
+              <circle
+                class={`dot${f.sobrouCentavos < 0 ? ' neg' : ''}`}
+                cx={p.x}
+                cy={p.y}
+                r={4.5}
+              />
             </g>
           );
         })}
@@ -189,7 +204,12 @@ export function Projecao() {
 
         <g text-anchor="middle">
           {reais.map((f, i) => (
-            <text key={f.anoMes} x={x(i)} y="208" style={i === n - 1 ? { fontWeight: 700, fill: 'var(--ink)' } : undefined}>
+            <text
+              key={f.anoMes}
+              x={x(i)}
+              y="208"
+              style={i === n - 1 ? { fontWeight: 700, fill: 'var(--ink)' } : undefined}
+            >
               {formatarMesAbreviado(f.anoMes, idiomaAtual)}
             </text>
           ))}
@@ -209,7 +229,10 @@ export function Projecao() {
           <i class="k-proj" />
           {t('projecao.legenda', {
             m1: formatarMesAbreviado(projecao.baseMeses[0]!, idiomaAtual),
-            m3: formatarMesAbreviado(projecao.baseMeses[projecao.baseMeses.length - 1]!, idiomaAtual),
+            m3: formatarMesAbreviado(
+              projecao.baseMeses[projecao.baseMeses.length - 1]!,
+              idiomaAtual,
+            ),
           })}
         </span>
       </div>

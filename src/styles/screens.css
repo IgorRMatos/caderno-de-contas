@@ -866,18 +866,29 @@ details.data-table td:first-child {
   margin: 0 auto var(--s4);
 }
 
-/* ---------- Painel lateral (lançamento manual) ---------- */
+/* ---------- Painel lateral (lançamento manual) ----------
+   T11/D15: mesmo componente <Dialog>, variante "drawer" — por ser um
+   <dialog> nativo (não uma div), zera os resets que o UA aplica por
+   padrão (borda, margem, limites de largura/altura da centralização). */
 .drawer {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   width: min(440px, 100%);
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  color: var(--ink);
   background: var(--sheet);
   z-index: 45;
   padding: var(--s6) var(--s5);
   box-shadow: -18px 0 40px -20px rgba(0, 0, 0, 0.45);
   overflow-y: auto;
+}
+.drawer::backdrop {
+  background: rgba(38, 34, 30, 0.45);
 }
 .drawer h2 {
   font-size: var(--fs-xl);

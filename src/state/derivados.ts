@@ -64,6 +64,15 @@ export const projecaoAtual = computed(() => {
   return mes === null ? null : calcularProjecao(lancamentosComCategoria.value, mes, new Date());
 });
 
+/** T11 — lançamentos do mês de referência, mais recentes primeiro (livro-caixa). */
+export const lancamentosDoMesAtual = computed(() => {
+  const mes = mesReferencia.value;
+  if (mes === null) return [];
+  return lancamentosComCategoria.value
+    .filter((l) => l.data.slice(0, 7) === mes)
+    .sort((a, b) => b.data.localeCompare(a.data) || b.criadoEm.localeCompare(a.criadoEm));
+});
+
 export const insightsAtuais = computed(() => {
   const mes = mesReferencia.value;
   const projecao = projecaoAtual.value;

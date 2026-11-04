@@ -14,7 +14,11 @@ function nomeCategoria(id: string, categorias: readonly Categoria[]): string {
  * em texto final: formata moeda/mês/categoria no idioma ativo e interpola via
  * `t()`. É aqui — na UI — que os dados viram texto, nunca no domínio (D9).
  */
-export function textoInsight(insight: Insight, idioma: Idioma, categorias: readonly Categoria[]): string {
+export function textoInsight(
+  insight: Insight,
+  idioma: Idioma,
+  categorias: readonly Categoria[],
+): string {
   const p = insight.params;
   const params: Record<string, string | number> = {};
 

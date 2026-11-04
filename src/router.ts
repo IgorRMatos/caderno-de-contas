@@ -30,15 +30,17 @@ export function navegar(rota: Rota): void {
   }
 }
 
+const ROTAS_COM_GUARDA: readonly Rota[] = ['/caderno', '/livro-caixa'];
+
 /**
- * Sem NENHUM lançamento no app, #/caderno não faz sentido: volta para o início
- * (TECH.md §2 "Rotas"). Usa `temDados` (não `mesReferencia`) de propósito: um
- * filtro que zera a lista (CA08.5) deve mostrar o estado vazio dentro do
- * dashboard, não chutar o usuário de volta para o início.
+ * Sem NENHUM lançamento no app, #/caderno e #/livro-caixa não fazem sentido:
+ * voltam para o início (TECH.md §2 "Rotas"). Usa `temDados` (não
+ * `mesReferencia`) de propósito: um filtro que zera a lista (CA08.5) deve
+ * mostrar o estado vazio dentro da tela, não chutar o usuário de volta.
  */
 export function iniciarGuardaDeRotas(): () => void {
   return effect(() => {
-    if (rotaAtual.value === '/caderno' && !temDados.value) {
+    if (ROTAS_COM_GUARDA.includes(rotaAtual.value) && !temDados.value) {
       navegar('/');
     }
   });

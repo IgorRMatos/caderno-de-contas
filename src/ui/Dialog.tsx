@@ -7,6 +7,8 @@ export interface DialogProps {
   tituloId: string;
   /** `alertdialog` para confirmações destrutivas (ex.: apagar dados). */
   tipo?: 'dialog' | 'alertdialog';
+  /** `drawer` — painel lateral de 440px (UX §4.6: "Anotar no caderno"/"Corrigir lançamento"), em vez da folha centralizada padrão. */
+  variante?: 'dialog' | 'drawer';
   onFechar: () => void;
   /** Elemento a focar ao abrir (D15: foco inicial configurável). Padrão: o próprio `<dialog>`. */
   focoInicialRef?: RefObject<HTMLElement>;
@@ -23,6 +25,7 @@ export function Dialog({
   titulo,
   tituloId,
   tipo = 'dialog',
+  variante = 'dialog',
   onFechar,
   focoInicialRef,
   children,
@@ -50,7 +53,7 @@ export function Dialog({
   return (
     <dialog
       ref={dialogRef}
-      class="dialog"
+      class={variante}
       role={tipo}
       aria-labelledby={tituloId}
       onClose={aoFecharNativo}

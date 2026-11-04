@@ -21,7 +21,13 @@ function SeletorMes() {
 
   return (
     <div class="dropdown">
-      <button type="button" class="dd" aria-haspopup="listbox" aria-expanded={aberto} onClick={() => setAberto((a) => !a)}>
+      <button
+        type="button"
+        class="dd"
+        aria-haspopup="listbox"
+        aria-expanded={aberto}
+        onClick={() => setAberto((a) => !a)}
+      >
         <Calendar class="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
         {atual !== null ? formatarMesPorExtenso(atual, idioma.value) : t('filtros.periodo')}
         <ChevronDown class="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
@@ -66,11 +72,20 @@ function SeletorCategorias() {
     setAberto(false);
   }
 
-  const rotulo = filtros.value.categorias.length === 0 ? t('filtros.todas') : String(filtros.value.categorias.length);
+  const rotulo =
+    filtros.value.categorias.length === 0
+      ? t('filtros.todas')
+      : String(filtros.value.categorias.length);
 
   return (
     <div class="dropdown">
-      <button type="button" class="dd" aria-haspopup="listbox" aria-expanded={aberto} onClick={() => (aberto ? setAberto(false) : abrir())}>
+      <button
+        type="button"
+        class="dd"
+        aria-haspopup="listbox"
+        aria-expanded={aberto}
+        onClick={() => (aberto ? setAberto(false) : abrir())}
+      >
         <Filter class="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
         {rotulo}
         <ChevronDown class="icon icon-sm" strokeWidth={1.75} aria-hidden="true" />
@@ -79,11 +94,20 @@ function SeletorCategorias() {
         <div class="dropdown-painel">
           {categorias.value.map((c) => (
             <label class="opcao" key={c.id}>
-              <input type="checkbox" checked={selecao.includes(c.id)} onChange={() => alternar(c.id)} />
+              <input
+                type="checkbox"
+                checked={selecao.includes(c.id)}
+                onChange={() => alternar(c.id)}
+              />
               {c.nome}
             </label>
           ))}
-          <button type="button" class="btn btn-ink" style={{ marginTop: 'var(--s2)', minHeight: '40px' }} onClick={aplicar}>
+          <button
+            type="button"
+            class="btn btn-ink"
+            style={{ marginTop: 'var(--s2)', minHeight: '40px' }}
+            onClick={aplicar}
+          >
             {t('filtros.aplicar')}
           </button>
         </div>
@@ -103,7 +127,10 @@ export function Filtros() {
   }
 
   function removerCategoria(id: string): void {
-    filtros.value = { ...filtros.value, categorias: filtros.value.categorias.filter((c) => c !== id) };
+    filtros.value = {
+      ...filtros.value,
+      categorias: filtros.value.categorias.filter((c) => c !== id),
+    };
   }
 
   const temFiltroAtivo = periodoAtual !== 'ultimo-mes' || categoriasAtivas.length > 0;
@@ -139,13 +166,22 @@ export function Filtros() {
             return (
               <span class="chip" key={id}>
                 {nome}
-                <button type="button" aria-label={t('filtros.removerFiltro', { nome })} onClick={() => removerCategoria(id)}>
+                <button
+                  type="button"
+                  aria-label={t('filtros.removerFiltro', { nome })}
+                  onClick={() => removerCategoria(id)}
+                >
                   ×
                 </button>
               </span>
             );
           })}
-          <button type="button" class="btn btn-ghost" style={{ minHeight: '36px' }} onClick={limpar}>
+          <button
+            type="button"
+            class="btn btn-ghost"
+            style={{ minHeight: '36px' }}
+            onClick={limpar}
+          >
             {t('filtros.limpar')}
           </button>
         </div>

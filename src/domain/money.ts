@@ -130,8 +130,22 @@ const formatadoresCompactos = new Map<Idioma, Intl.NumberFormat>();
 export function formatarCompacto(centavos: number, idioma: Idioma): string {
   let fmt = formatadoresCompactos.get(idioma);
   if (!fmt) {
-    fmt = new Intl.NumberFormat(LOCALE_INTL[idioma], { notation: 'compact', maximumFractionDigits: 1 });
+    fmt = new Intl.NumberFormat(LOCALE_INTL[idioma], {
+      notation: 'compact',
+      maximumFractionDigits: 1,
+    });
     formatadoresCompactos.set(idioma, fmt);
   }
   return fmt.format(centavos / 100);
+}
+
+/** T11 — só o símbolo da moeda ativa ("R$", "€", "$"), para prefixar campos de valor. */
+export function simboloMoeda(idioma: Idioma): string {
+  const parte = new Intl.NumberFormat(LOCALE_INTL[idioma], {
+    style: 'currency',
+    currency: moedaAtiva(idioma),
+  })
+    .formatToParts(0)
+    .find((p) => p.type === 'currency');
+  return parte?.value ?? moedaAtiva(idioma);
 }
