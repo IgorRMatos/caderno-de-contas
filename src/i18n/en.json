@@ -212,14 +212,14 @@
     "titulo": "Your numbers stay with you, and only with you.",
     "notaMargem": "all yours!",
     "copiaTitulo": "Take a copy",
-    "copiaApoio": "Downloads a CSV with every entry, in the same format the notebook reads. Works as a backup and for opening somewhere else.",
+    "copiaApoio": "Downloads a CSV with every entry, in the same format the notebook reads. Handy as a backup or for opening in another app.",
     "exportarCsv": "Export my data (CSV)",
     "zeroTitulo": "Start from scratch",
-    "zeroApoio": "Deletes entries, the categories you created and filters from this browser. Your theme and language stay as they are.",
-    "vazio": "Your notebook is empty: nothing to take or delete yet.",
+    "zeroApoio": "Deletes your entries, the categories you created and your filters from this browser. Your theme and language stay as they are.",
+    "vazio": "Your notebook is empty: nothing to copy or delete yet.",
     "copiaBaixadaDetalhe_one": "{arquivo} with {n} entry.",
     "copiaBaixadaDetalhe_other": "{arquivo} with {n} entries.",
-    "zeradoDetalhe": "I erased everything from this browser. Whenever you want, just upload a spreadsheet."
+    "zeradoDetalhe": "I've erased everything from this browser. Whenever you're ready, just upload a spreadsheet."
   },
   "assinatura": {
     "texto": "handmade by Igor Rodrigues de Matos",

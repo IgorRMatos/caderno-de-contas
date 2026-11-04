@@ -198,8 +198,8 @@
   "apagar": {
     "botao": "Borrar mis datos",
     "titulo": "¿Arrancar todas las hojas?",
-    "corpo_one": "Voy a borrar {n} movimiento y las categorías que creaste. No se puede deshacer, porque no guardo ninguna copia.",
-    "corpo_other": "Voy a borrar {n} movimientos y las categorías que creaste. No se puede deshacer, porque no guardo ninguna copia.",
+    "corpo_one": "Voy a borrar {n} movimiento y las categorías que has creado. No se puede deshacer, porque no guardo ninguna copia.",
+    "corpo_other": "Voy a borrar {n} movimientos y las categorías que has creado. No se puede deshacer, porque no guardo ninguna copia.",
     "naoManter": "No, conservar todo",
     "exportarAntes": "Exportar antes",
     "simApagar": "Sí, borrar todo",
@@ -211,15 +211,15 @@
     "kicker": "Tus datos",
     "titulo": "Tus cuentas se quedan contigo, y solo contigo.",
     "notaMargem": "¡solo tuyo!",
-    "copiaTitulo": "Llevarte una copia",
+    "copiaTitulo": "Llévate una copia",
     "copiaApoio": "Descarga un CSV con todos los movimientos, en el mismo formato que lee el cuaderno. Sirve de copia de seguridad y para abrirlo en otro sitio.",
     "exportarCsv": "Exportar mis datos (CSV)",
     "zeroTitulo": "Empezar de cero",
-    "zeroApoio": "Borra los movimientos, las categorías creadas y los filtros de este navegador. Tu tema y tu idioma se quedan como están.",
+    "zeroApoio": "Borra de este navegador los movimientos, las categorías que has creado y los filtros. Tu tema y tu idioma se quedan como están.",
     "vazio": "Tu cuaderno está vacío: todavía no hay nada que llevarte ni que borrar.",
     "copiaBaixadaDetalhe_one": "{arquivo} con {n} movimiento.",
     "copiaBaixadaDetalhe_other": "{arquivo} con {n} movimientos.",
-    "zeradoDetalhe": "Borré todo de este navegador. Cuando quieras, solo tienes que subir una hoja de cálculo."
+    "zeradoDetalhe": "Lo he borrado todo de este navegador. Cuando quieras, solo tienes que subir una hoja de cálculo."
   },
   "assinatura": {
     "texto": "hecho a mano por Igor Rodrigues de Matos",
