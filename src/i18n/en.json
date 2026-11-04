@@ -108,7 +108,8 @@
   "secoes": {
     "oQueNotei": "What I noticed",
     "entrouSaiu": "In vs. out, month by month",
-    "ultimosMeses": "last {n} months",
+    "ultimosMeses_one": "last month",
+    "ultimosMeses_other": "last {n} months",
     "paraOndeFoi": "Where it went",
     "saidasDoMes": "{mes} expenses",
     "proximosMeses": "What about the next 3 months?",
@@ -213,6 +214,7 @@
     "projecaoDescricao": "What was left per month from {m1} to {m2}, and an estimate for the next 3 months: around {valor} a month, based on the average of {baseM1} to {baseM3}.",
     "entrou": "In",
     "saiu": "Out",
-    "sobrou": "left over"
+    "sobrou": "left over",
+    "mes": "Month"
   }
 }

@@ -1,5 +1,5 @@
 import { anoMesDeISO } from './dates.js';
-import { mesesComDados } from './filters.js';
+import { anoMesDeslocado, mesesComDados } from './filters.js';
 import type { Lancamento } from './types.js';
 
 export interface KPIsMes {
@@ -84,4 +84,31 @@ export function fluxoMensal(lancamentos: readonly Lancamento[]): FluxoMes[] {
       sobrouCentavos: k.sobrouCentavos,
     };
   });
+}
+
+/**
+ * T10 — fluxo mês a mês de `de` a `ate` (ambos AAAA-MM, inclusive), **sem
+ * pular meses sem lançamento** (vira zero), para o eixo do gráfico FluxoCaixa
+ * não quebrar quando o histórico do usuário tem um buraco.
+ */
+export function fluxoNaJanela(
+  lancamentos: readonly Lancamento[],
+  de: string,
+  ate: string,
+): FluxoMes[] {
+  const meses: FluxoMes[] = [];
+  let cursor = de;
+  let protecao = 0;
+  while (cursor <= ate && protecao < 240) {
+    protecao++;
+    const k = kpisDoMes(lancamentos, cursor);
+    meses.push({
+      anoMes: cursor,
+      entrouCentavos: k.entrouCentavos,
+      saiuCentavos: k.saiuCentavos,
+      sobrouCentavos: k.sobrouCentavos,
+    });
+    cursor = anoMesDeslocado(cursor, 1);
+  }
+  return meses;
 }

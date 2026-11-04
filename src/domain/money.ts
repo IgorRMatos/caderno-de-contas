@@ -123,3 +123,15 @@ export function formatarMoeda(centavos: number, idioma: Idioma): string {
   }
   return fmt.format(centavos / 100);
 }
+
+const formatadoresCompactos = new Map<Idioma, Intl.NumberFormat>();
+
+/** T10 — rótulo curto de eixo de gráfico ("18 mil" / "18K"), sem símbolo de moeda. */
+export function formatarCompacto(centavos: number, idioma: Idioma): string {
+  let fmt = formatadoresCompactos.get(idioma);
+  if (!fmt) {
+    fmt = new Intl.NumberFormat(LOCALE_INTL[idioma], { notation: 'compact', maximumFractionDigits: 1 });
+    formatadoresCompactos.set(idioma, fmt);
+  }
+  return fmt.format(centavos / 100);
+}

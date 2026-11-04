@@ -108,7 +108,8 @@
   "secoes": {
     "oQueNotei": "Lo que noté",
     "entrouSaiu": "Entró × salió, mes a mes",
-    "ultimosMeses": "últimos {n} meses",
+    "ultimosMeses_one": "último mes",
+    "ultimosMeses_other": "últimos {n} meses",
     "paraOndeFoi": "Adónde fue",
     "saidasDoMes": "salidas de {mes}",
     "proximosMeses": "¿Y los próximos 3 meses?",
@@ -213,6 +214,7 @@
     "projecaoDescricao": "Cuánto quedó por mes de {m1} a {m2} y estimación para los 3 meses siguientes: cerca de {valor} por mes, según la media de {baseM1} a {baseM3}.",
     "entrou": "Entró",
     "saiu": "Salió",
-    "sobrou": "quedó"
+    "sobrou": "quedó",
+    "mes": "Mes"
   }
 }

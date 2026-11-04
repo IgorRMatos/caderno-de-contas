@@ -12,6 +12,8 @@ import {
 } from '../state/derivados.js';
 import { categorias, filtros, idioma } from '../state/signals.js';
 import { BannerExemplo } from '../ui/BannerExemplo.js';
+import { FluxoCaixa } from '../ui/charts/FluxoCaixa.js';
+import { Projecao } from '../ui/charts/Projecao.js';
 import { Filtros } from '../ui/Filtros.js';
 import { textoInsight } from '../ui/insightTexto.js';
 
@@ -146,6 +148,8 @@ function ConteudoDashboard() {
         )}
       </section>
 
+      <FluxoCaixa />
+
       <section class="categories">
         <div class="sec-title">
           <h2>{t('secoes.paraOndeFoi')}</h2>
@@ -170,6 +174,8 @@ function ConteudoDashboard() {
           })}
         </ul>
       </section>
+
+      <Projecao />
     </div>
   );
 }

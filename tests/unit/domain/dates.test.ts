@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   anoMesDeISO,
   dataNativaParaISO,
+  formatarMesAbreviado,
   formatarMesPorExtenso,
   inferirOrdemData,
   parseDataPlanilha,
@@ -102,5 +103,13 @@ describe('formatarMesPorExtenso', () => {
     expect(formatarMesPorExtenso('2026-10', 'pt-BR').toLowerCase()).toContain('outubro');
     expect(formatarMesPorExtenso('2026-10', 'en').toLowerCase()).toContain('october');
     expect(formatarMesPorExtenso('2026-10', 'es').toLowerCase()).toContain('octubre');
+  });
+});
+
+describe('formatarMesAbreviado (T10 — rótulo de eixo de gráfico)', () => {
+  it('mês curto, sem ponto final (pt-BR tem "out." por padrão do Intl)', () => {
+    expect(formatarMesAbreviado('2026-10', 'pt-BR')).toBe('out');
+    expect(formatarMesAbreviado('2026-10', 'en').toLowerCase()).toBe('oct');
+    expect(formatarMesAbreviado('2026-10', 'es').toLowerCase()).toBe('oct');
   });
 });

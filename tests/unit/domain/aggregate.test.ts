@@ -3,6 +3,7 @@ import {
   calcularVariacao,
   categoriasDoMes,
   fluxoMensal,
+  fluxoNaJanela,
   kpisDoMes,
 } from '../../../src/domain/aggregate';
 import { construirLancamentosPadaria } from './_fixtures/padaria';
@@ -75,6 +76,37 @@ describe('kpisDoMes — margem "—" (CA05.3)', () => {
       saiuCentavos: 0,
       sobrouCentavos: 0,
       margemPercentual: null,
+    });
+  });
+});
+
+describe('fluxoNaJanela (T10 — eixo do gráfico FluxoCaixa)', () => {
+  const lancamentos = construirLancamentosPadaria();
+
+  it('cobre exatamente a janela pedida, mesmo sendo menor que o histórico todo', () => {
+    const fluxo = fluxoNaJanela(lancamentos, '2026-08', '2026-10');
+    expect(fluxo.map((f) => f.anoMes)).toEqual(['2026-08', '2026-09', '2026-10']);
+    expect(fluxo[2]).toMatchObject({ entrouCentavos: 1_800_000, sobrouCentavos: 324_000 });
+  });
+
+  it('de === ate: janela de um mês só (atalho "Último mês")', () => {
+    expect(fluxoNaJanela(lancamentos, '2026-10', '2026-10')).toHaveLength(1);
+  });
+
+  it('mês sem nenhum lançamento dentro da janela vira zero, não é pulado', () => {
+    const fluxo = fluxoNaJanela(lancamentos, '2026-01', '2026-05');
+    expect(fluxo.map((f) => f.anoMes)).toEqual([
+      '2026-01',
+      '2026-02',
+      '2026-03',
+      '2026-04',
+      '2026-05',
+    ]);
+    expect(fluxo[0]).toEqual({
+      anoMes: '2026-01',
+      entrouCentavos: 0,
+      saiuCentavos: 0,
+      sobrouCentavos: 0,
     });
   });
 });

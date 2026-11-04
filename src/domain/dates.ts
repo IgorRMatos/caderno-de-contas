@@ -127,6 +127,19 @@ export function formatarMesPorExtenso(anoMes: string, idioma: Idioma): string {
   return fmt.format(new Date(Date.UTC(ano, mes - 1, 1)));
 }
 
+const formatadoresMesAbreviado = new Map<Idioma, Intl.DateTimeFormat>();
+
+/** T10 — `AAAA-MM` → mês abreviado p/ rótulo de eixo de gráfico (ex.: "out"). */
+export function formatarMesAbreviado(anoMes: string, idioma: Idioma): string {
+  let fmt = formatadoresMesAbreviado.get(idioma);
+  if (!fmt) {
+    fmt = new Intl.DateTimeFormat(LOCALE_INTL[idioma], { month: 'short', timeZone: 'UTC' });
+    formatadoresMesAbreviado.set(idioma, fmt);
+  }
+  const [ano, mes] = anoMes.split('-').map(Number) as [number, number];
+  return fmt.format(new Date(Date.UTC(ano, mes - 1, 1))).replace(/\.$/, '');
+}
+
 export function anoMesDeISO(iso: string): string {
   return iso.slice(0, 7);
 }

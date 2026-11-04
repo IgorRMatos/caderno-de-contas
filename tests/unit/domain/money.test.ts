@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   centavosDeNumero,
+  formatarCompacto,
   formatarMoeda,
   inferirSeparadorDecimal,
   parseValorPlanilha,
@@ -116,5 +117,16 @@ describe('formatarMoeda (D1 — moeda segue o idioma)', () => {
 
   it('es-ES não agrupa milhar em valores de 4 dígitos (comportamento real do CLDR, não é bug)', () => {
     expect(normalizarEspacos(formatarMoeda(324000, 'es'))).toBe('3240,00 €');
+  });
+});
+
+describe('formatarCompacto (T10 — rótulo curto de eixo de gráfico)', () => {
+  it('abrevia sem símbolo de moeda, conforme o idioma', () => {
+    expect(normalizarEspacos(formatarCompacto(1800000, 'pt-BR'))).toBe('18 mil');
+    expect(formatarCompacto(1800000, 'en')).toBe('18K');
+  });
+
+  it('negativo mantém o sinal', () => {
+    expect(formatarCompacto(-75000, 'pt-BR')).toBe('-750');
   });
 });
