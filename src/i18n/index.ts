@@ -71,7 +71,16 @@ export function t(chave: string, params?: Record<string, string | number>): stri
   const template =
     buscarTemplate(chaveFinal, idiomaAtual) ?? buscarTemplate(chaveFinal, IDIOMA_PADRAO) ?? chave;
   if (!params) return template;
-  return template.replace(/\{(\w+)\}/g, (match, nome: string) =>
+  const resultado = template.replace(/\{(\w+)\}/g, (match, nome: string) =>
     nome in params ? String(params[nome]) : match,
   );
+  // Nota da Rosetta (revisão T5.1): formatarMesPorExtenso devolve minúsculas
+  // ("outubro de 2026"). Quando o template começa com um {param} (em geral
+  // {mes}), capitaliza a 1ª letra do resultado; frases que já começam com
+  // texto literal (inclusive anotações que ficam minúsculas de propósito,
+  // como "últimos {n} meses") não são tocadas.
+  if (template.startsWith('{') && resultado.length > 0) {
+    return resultado.charAt(0).toLocaleUpperCase(LOCALE_INTL[idiomaAtual]) + resultado.slice(1);
+  }
+  return resultado;
 }

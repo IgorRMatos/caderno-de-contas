@@ -15,9 +15,9 @@
     "pt-BR": "Português",
     "es": "Español",
     "en": "English",
-    "pt-BR_completo": "Brasil (Português)",
-    "es_completo": "España (Español)",
-    "en_completo": "USA (English)"
+    "pt-BR_completo": "Português (Brasil)",
+    "es_completo": "Español (España)",
+    "en_completo": "English (US)"
   },
   "inicio": {
     "h1": "Quanto sobrou este mês? Me mostra a planilha que eu te conto.",
@@ -41,14 +41,16 @@
     "formatos": "CSV ou XLSX · até 5.000 linhas",
     "podeSoltar": "Pode soltar! Eu cuido do resto.",
     "lendo": "Lendo sua planilha…",
-    "lendoDetalhe": "{nome} · {linhas} linhas · nada disso sai do seu computador",
+    "lendoDetalhe_one": "{nome} · {n} linha · nada disso sai do seu computador",
+    "lendoDetalhe_other": "{nome} · {n} linhas · nada disso sai do seu computador",
     "ilegivelTitulo": "Esse arquivo eu não consegui ler.",
     "ilegivelApoio": "Tente um CSV ou XLSX…",
     "tentarOutro": "Tentar outro arquivo"
   },
   "somar": {
     "titulo": "Já tem contas neste caderno",
-    "corpo": "Você já tem {n} lançamentos guardados aqui. A planilha nova traz {m}. O que eu faço com eles?",
+    "corpo_one": "Você já tem {n} lançamento guardado aqui. A planilha nova traz {m}. O que eu faço com eles?",
+    "corpo_other": "Você já tem {n} lançamentos guardados aqui. A planilha nova traz {m}. O que eu faço com eles?",
     "somar": "Somar aos atuais",
     "substituir": "Substituir tudo",
     "dica": "somar pode duplicar se for a mesma planilha"
@@ -59,16 +61,17 @@
     "palpiteMeu": "palpite meu",
     "naoTenhoColuna": "— não tenho essa coluna —",
     "perguntaValor": "Qual coluna tem o dinheiro?",
-    "faltaCampo": "Falta só uma coisa: dizer qual coluna é o {campo}.",
+    "faltaCampo": "Falta só uma coisa: dizer qual coluna é {campo}.",
     "montar": "Montar meu caderno →",
-    "campoData": "data",
-    "campoDescricao": "descrição",
-    "campoValor": "valor",
-    "campoTipo": "entrada ou saída",
-    "campoCategoria": "categoria"
+    "campoData": "a data",
+    "campoDescricao": "a descrição",
+    "campoValor": "o valor",
+    "campoTipo": "o tipo (entrada ou saída)",
+    "campoCategoria": "a categoria"
   },
   "banner": {
-    "texto": "Você está folheando um caderno de exemplo: {nome}, {n} meses de contas.",
+    "texto_one": "Você está folheando um caderno de exemplo: {nome}, {n} mês de contas.",
+    "texto_other": "Você está folheando um caderno de exemplo: {nome}, {n} meses de contas.",
     "trocar": "Trocar pela minha planilha"
   },
   "indicadores": {
@@ -78,7 +81,7 @@
     "quantoSaiu": "Quanto saiu",
     "margem": "margem {p}%",
     "margemTraco": "margem —",
-    "margemFrase": "De cada R$ 100 que entraram, sobraram R$ {x}.",
+    "margemFrase": "De cada {cem} que entraram, sobraram {x}.",
     "margemSemEntrada": "Neste mês não entrou nada, então não dá para calcular a margem.",
     "aMaisQue": "{p}% a mais",
     "aMenosQue": "{p}% a menos"
@@ -194,8 +197,8 @@
   "apagar": {
     "botao": "Apagar meus dados",
     "titulo": "Arrancar todas as folhas?",
-    "corpo_one": "Vou apagar {n} lançamento e {k} categorias que você criou. Não tem como desfazer, porque não guardo cópia em lugar nenhum.",
-    "corpo_other": "Vou apagar {n} lançamentos e {k} categorias que você criou. Não tem como desfazer, porque não guardo cópia em lugar nenhum.",
+    "corpo_one": "Vou apagar {n} lançamento e as categorias que você criou. Não tem como desfazer, porque não guardo cópia em lugar nenhum.",
+    "corpo_other": "Vou apagar {n} lançamentos e as categorias que você criou. Não tem como desfazer, porque não guardo cópia em lugar nenhum.",
     "naoManter": "Não, manter tudo",
     "exportarAntes": "Exportar antes",
     "simApagar": "Sim, apagar tudo",
