@@ -1,0 +1,4 @@
+data,descricao,valor,tipo,categoria
+2026-10-01,Vendas do balcao,"1.500,00",entrada,Vendas
+2026-10-02,Farinha - Moinho Sul,"450,00",saida,Fornecedores
+2026-10-03,Conta de luz,"612,00",saida,Energia

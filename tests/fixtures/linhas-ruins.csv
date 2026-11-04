@@ -1,0 +1,5 @@
+data,descricao,valor,tipo,categoria
+2026-10-01,Venda boa,"100,00",entrada,Vendas
+data-invalida,Linha ruim 1,"100,00",entrada,Vendas
+2026-10-02,Linha ruim 2,abc,entrada,Vendas
+2026-10-03,Venda boa 2,"200,00",entrada,Vendas
