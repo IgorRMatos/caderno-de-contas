@@ -18,6 +18,10 @@ function resetSinais() {
   tema.value = 'light';
   idioma.value = 'pt-BR';
   ui.value = { storageOk: true, avisoCorrupcaoMostrado: false, itensDescartados: 0 };
+  // o effect de tema grava data-theme no <html>; sem isso, um teste anterior
+  // vaza o atributo para o próximo (o app real conta com o script inline do
+  // D7 já ter resolvido isso antes do boot — aqui simulamos "página nova").
+  document.documentElement.removeAttribute('data-theme');
 }
 
 let parar: (() => void) | null = null;
@@ -50,6 +54,23 @@ describe('iniciarPersistencia — carga inicial (CA13.2)', () => {
     parar = p.parar;
     expect(tema.value).toBe('dark');
     expect(idioma.value).toBe('en');
+  });
+
+  it('D7: <html data-theme> já resolvido pelo script inline tem prioridade sobre o storage (evita dessincronia)', () => {
+    window.localStorage.setItem(CHAVES.tema, 'light');
+    document.documentElement.setAttribute('data-theme', 'dark'); // simula prefers-color-scheme: dark
+    const p = iniciarPersistencia();
+    parar = p.parar;
+    expect(tema.value).toBe('dark');
+  });
+
+  it('tema.value muda o data-theme do <html> em runtime (ex.: clique no sol/lua)', () => {
+    const p = iniciarPersistencia();
+    parar = p.parar;
+    tema.value = 'dark';
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    tema.value = 'light';
+    expect(document.documentElement.getAttribute('data-theme')).toBe('light');
   });
 });
 

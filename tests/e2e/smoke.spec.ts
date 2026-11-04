@@ -8,7 +8,8 @@ test('carrega sem erros no console e mostra a folha do caderno', async ({ page }
   });
 
   await page.goto('/');
-  await expect(page.locator('.sheet')).toBeVisible();
+  await expect(page.locator('.topbar')).toBeVisible();
+  await expect(page.locator('main#conteudo')).toBeVisible();
   expect(erros).toEqual([]);
 });
 

@@ -43,7 +43,17 @@ export function iniciarPersistencia(): PersistenciaIniciada {
   lancamentos.value = carga.lancamentos;
   categorias.value = carga.categorias;
   filtros.value = carga.filtros ?? FILTROS_PADRAO;
-  if (carga.tema) tema.value = carga.tema;
+
+  // D7 — o script inline no <head> já decidiu o tema certo (salvo ou
+  // prefers-color-scheme) e aplicou em <html data-theme>, antes de qualquer
+  // JS rodar, para não piscar (CA09.4). O signal parte do que já está no
+  // DOM (nunca de um padrão fixo, senão os dois ficam fora de sincronia no
+  // primeiro load com `prefers-color-scheme: dark` e sem escolha salva);
+  // sem o atributo (ex.: ambiente de teste sem o script inline), cai para o
+  // que veio do storage.
+  const temaDoDom = document.documentElement.getAttribute('data-theme');
+  tema.value = temaDoDom === 'dark' || temaDoDom === 'light' ? temaDoDom : (carga.tema ?? 'light');
+
   if (carga.idioma && idiomaValido(carga.idioma)) {
     // CA10.4 — escolha salva tem prioridade sobre a detecção do navegador.
     idioma.value = carga.idioma;
@@ -76,6 +86,7 @@ export function iniciarPersistencia(): PersistenciaIniciada {
   });
 
   const pararTema = effect(() => {
+    document.documentElement.setAttribute('data-theme', tema.value);
     storage.salvarTema(tema.value);
   });
   const pararIdioma = effect(() => {

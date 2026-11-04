@@ -56,6 +56,22 @@
   }
 }
 
+/* ---------- Link "pular para o conteúdo" (UX §8) ---------- */
+.skip-link {
+  position: absolute;
+  left: var(--s3);
+  top: -100px;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--sheet);
+  padding: var(--s2) var(--s4);
+  border-radius: var(--r-input);
+  transition: top var(--dur-fast) var(--ease);
+}
+.skip-link:focus {
+  top: var(--s3);
+}
+
 /* ---------- Cabeçalho ---------- */
 .topbar {
   display: flex;
@@ -385,6 +401,18 @@
   height: 4px;
   width: 100%;
   transform-origin: left;
+  animation: toast-bar var(--toast-duracao, 4s) linear forwards;
+}
+.toast .bar.is-paused {
+  animation-play-state: paused;
+}
+@keyframes toast-bar {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
 }
 .toast.ok {
   background: var(--post-ok);
@@ -527,25 +555,22 @@
   border-color: var(--ink);
 }
 
-/* ---------- Diálogo (folha por cima) ---------- */
-.scrim {
-  position: fixed;
-  inset: 0;
-  background: rgba(38, 34, 30, 0.45);
-  z-index: 40;
-  display: grid;
-  place-items: center;
-  padding: var(--s4);
-}
+/* ---------- Diálogo (folha por cima) ----------
+   D15: <dialog> nativo com showModal() — o scrim do mockup vira o
+   ::backdrop nativo; foco preso e Esc já vêm de graça do navegador. */
 .dialog {
   width: min(520px, 100%);
   background: var(--sheet);
   color: var(--ink);
   padding: var(--s6) var(--s5) var(--s5);
+  border: 0;
   border-radius: var(--r-sheet);
   box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.45);
   transform: rotate(-0.5deg);
   position: relative;
+}
+.dialog::backdrop {
+  background: rgba(38, 34, 30, 0.45);
 }
 .dialog h2 {
   font-size: var(--fs-xl);
@@ -606,5 +631,10 @@
   }
   .btn:hover {
     transform: none;
+  }
+  /* D16/UX §7: a barra do toast é informação de tempo, não enfeite — continua
+     rodando (e pausável) mesmo com prefers-reduced-motion. */
+  .toast .bar {
+    animation-duration: var(--toast-duracao, 4s) !important;
   }
 }
