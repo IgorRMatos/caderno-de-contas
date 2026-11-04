@@ -203,7 +203,23 @@
     "naoManter": "Não, manter tudo",
     "exportarAntes": "Exportar antes",
     "simApagar": "Sim, apagar tudo",
-    "exportarMeusDados": "Exportar meus dados"
+    "exportarMeusDados": "Exportar meus dados",
+    "dica": "dica: exporte antes, por via das dúvidas.",
+    "mantem": "Seu tema e seu idioma ficam como estão."
+  },
+  "seusDados": {
+    "kicker": "Seus dados",
+    "titulo": "Suas contas ficam com você, e só com você.",
+    "notaMargem": "só seu!",
+    "copiaTitulo": "Levar uma cópia",
+    "copiaApoio": "Baixa um CSV com todos os lançamentos, no mesmo formato que o caderno lê. Serve de backup e para abrir em outro lugar.",
+    "exportarCsv": "Exportar meus dados (CSV)",
+    "zeroTitulo": "Começar do zero",
+    "zeroApoio": "Apaga lançamentos, categorias criadas e filtros deste navegador. Seu tema e seu idioma ficam como estão.",
+    "vazio": "Seu caderno está vazio: ainda não tem nada para levar nem para apagar.",
+    "copiaBaixadaDetalhe_one": "{arquivo} com {n} lançamento.",
+    "copiaBaixadaDetalhe_other": "{arquivo} com {n} lançamentos.",
+    "zeradoDetalhe": "Apaguei tudo deste navegador. Quando quiser, é só subir uma planilha."
   },
   "assinatura": {
     "texto": "feito à mão por Igor Rodrigues de Matos",

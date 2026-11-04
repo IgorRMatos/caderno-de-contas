@@ -24,6 +24,14 @@ function obterImplementacaoStorage(): Storage | null {
   }
 }
 
+/** Storage ativo desde o boot; `null` antes de `iniciarPersistencia()` (ex.: testes de unidade). */
+let storageAtivo: StorageCaderno | null = null;
+
+/** T12/CA12.3 — remove do storage os dados do usuário (e os backups), mantendo tema e idioma. */
+export function apagarDadosSalvos(): void {
+  storageAtivo?.apagarDados();
+}
+
 export interface PersistenciaIniciada {
   storage: StorageCaderno;
   /** Desliga os `effect`s de persistência (uso em testes; o app nunca chama isso). */
@@ -38,6 +46,7 @@ export interface PersistenciaIniciada {
  */
 export function iniciarPersistencia(): PersistenciaIniciada {
   const storage = criarStorage(obterImplementacaoStorage());
+  storageAtivo = storage;
   const carga = storage.carregarTudo();
 
   lancamentos.value = carga.lancamentos;

@@ -5,6 +5,7 @@ import { Inicio } from './screens/Inicio.js';
 import { LivroCaixa } from './screens/LivroCaixa.js';
 import { Mapeamento } from './screens/Mapeamento.js';
 import { SeusDados } from './screens/SeusDados.js';
+import { DialogoApagar } from './ui/DialogoApagar.js';
 import { DialogoSomarSubstituir } from './ui/DialogoSomarSubstituir.js';
 import { Footer } from './ui/Footer.js';
 import { Header } from './ui/Header.js';
@@ -33,6 +34,7 @@ export function App() {
       <Toasts />
       <LiveRegion />
       <DialogoSomarSubstituir />
+      <DialogoApagar />
       <PainelLancamento />
     </div>
   );

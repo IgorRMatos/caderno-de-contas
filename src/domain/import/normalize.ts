@@ -6,6 +6,7 @@ import {
   parseDataPlanilha,
   serialExcelParaISO,
 } from '../dates.js';
+import { desneutralizarFormula } from '../export.js';
 import { gerarId, slugificar } from '../id.js';
 import { centavosDeNumero, inferirSeparadorDecimal, parseValorPlanilha } from '../money.js';
 import type { Categoria, Lancamento, Tipo } from '../types.js';
@@ -24,8 +25,12 @@ export interface RelatorioImportacao {
   previa5: CelulaBruta[][];
 }
 
+/**
+ * Texto da célula, já sem o `'` que o export (D11) põe na frente de células
+ * que começam com `= + - @ \t \r` — assim exportar → importar devolve o mesmo texto.
+ */
 function celulaString(c: CelulaBruta | undefined): string | undefined {
-  return typeof c === 'string' ? c : undefined;
+  return typeof c === 'string' ? desneutralizarFormula(c) : undefined;
 }
 
 /**

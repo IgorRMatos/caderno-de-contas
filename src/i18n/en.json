@@ -203,7 +203,23 @@
     "naoManter": "No, keep everything",
     "exportarAntes": "Export first",
     "simApagar": "Yes, delete everything",
-    "exportarMeusDados": "Export my data"
+    "exportarMeusDados": "Export my data",
+    "dica": "tip: export first, just in case.",
+    "mantem": "Your theme and language stay as they are."
+  },
+  "seusDados": {
+    "kicker": "Your data",
+    "titulo": "Your numbers stay with you, and only with you.",
+    "notaMargem": "all yours!",
+    "copiaTitulo": "Take a copy",
+    "copiaApoio": "Downloads a CSV with every entry, in the same format the notebook reads. Works as a backup and for opening somewhere else.",
+    "exportarCsv": "Export my data (CSV)",
+    "zeroTitulo": "Start from scratch",
+    "zeroApoio": "Deletes entries, the categories you created and filters from this browser. Your theme and language stay as they are.",
+    "vazio": "Your notebook is empty: nothing to take or delete yet.",
+    "copiaBaixadaDetalhe_one": "{arquivo} with {n} entry.",
+    "copiaBaixadaDetalhe_other": "{arquivo} with {n} entries.",
+    "zeradoDetalhe": "I erased everything from this browser. Whenever you want, just upload a spreadsheet."
   },
   "assinatura": {
     "texto": "handmade by Igor Rodrigues de Matos",

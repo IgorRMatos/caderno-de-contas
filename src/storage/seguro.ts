@@ -10,6 +10,8 @@ export interface StorageSeguro {
   lerBruto(chave: string): string | null;
   /** `true` se gravou; `false` em qualquer falha (indisponível/QuotaExceeded). */
   gravarBruto(chave: string, valor: string): boolean;
+  /** T12 — remove a chave; nunca lança. */
+  removerBruto(chave: string): void;
 }
 
 const CHAVE_TESTE = 'caderno:v1:teste';
@@ -46,11 +48,21 @@ export function criarStorageSeguro(impl: Storage | null): StorageSeguro {
     }
   }
 
+  function removerBruto(chave: string): void {
+    if (!disponivel || !impl) return;
+    try {
+      impl.removeItem(chave);
+    } catch {
+      /* nada a fazer: storage bloqueado = nada guardado */
+    }
+  }
+
   return {
     get disponivel() {
       return disponivel;
     },
     lerBruto,
     gravarBruto,
+    removerBruto,
   };
 }

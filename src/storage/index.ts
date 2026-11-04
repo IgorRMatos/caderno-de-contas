@@ -76,6 +76,12 @@ export interface StorageCaderno {
   salvarFiltros(filtros: Filtros): boolean;
   salvarTema(tema: string): boolean;
   salvarIdioma(idioma: string): boolean;
+  /**
+   * T12/CA12.3 — "Apagar meus dados": remove lançamentos, categorias e filtros
+   * E as cópias `:backup` deles (que também são dados do usuário). Tema,
+   * idioma e meta ficam (UX §4.7: preferências de interface, não contas).
+   */
+  apagarDados(): void;
 }
 
 /** D8 completo. `impl` já deve ter vindo de um `try { window.localStorage } catch {}` de quem chama. */
@@ -125,5 +131,11 @@ export function criarStorage(impl: Storage | null): StorageCaderno {
     salvarFiltros: (filtros) => seguro.gravarBruto(CHAVES.filtros, JSON.stringify(filtros)),
     salvarTema: (tema) => seguro.gravarBruto(CHAVES.tema, tema),
     salvarIdioma: (idioma) => seguro.gravarBruto(CHAVES.idioma, idioma),
+    apagarDados() {
+      for (const chave of [CHAVES.lancamentos, CHAVES.categorias, CHAVES.filtros]) {
+        seguro.removerBruto(chave);
+        seguro.removerBruto(chaveBackup(chave));
+      }
+    },
   };
 }

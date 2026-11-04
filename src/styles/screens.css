@@ -963,3 +963,44 @@ details.data-table td:first-child {
     flex-wrap: wrap;
   }
 }
+
+/* ---------- T12 — Seus dados (UX §4.7, mockup 07) ---------- */
+.seus-dados {
+  padding: var(--s6) var(--s5);
+}
+.seus-dados .margin-note {
+  top: 40px;
+}
+.seus-dados h1 {
+  font-size: var(--fs-xl);
+  max-width: 24ch;
+}
+.seus-dados .sd-privacidade {
+  max-width: 60ch;
+  margin-top: var(--s3);
+}
+.seus-dados .sd-vazio {
+  color: var(--terra);
+  font-size: 1.35rem;
+  margin-top: var(--s4);
+}
+.seus-dados .sd-blocos {
+  display: grid;
+  gap: var(--s5);
+  margin-top: var(--s6);
+  max-width: 720px;
+}
+.seus-dados h2 {
+  font-size: var(--fs-lg);
+}
+.seus-dados .sd-apoio {
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+.btn-terra:not([disabled]) {
+  border-color: var(--terra);
+  color: var(--terra);
+}
+.dialog .dica-terra {
+  color: var(--terra);
+}

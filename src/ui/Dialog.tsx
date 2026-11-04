@@ -5,6 +5,8 @@ export interface DialogProps {
   aberto: boolean;
   titulo: string;
   tituloId: string;
+  /** id do texto que explica o diálogo (`aria-describedby`), obrigatório na prática para `alertdialog`. */
+  descricaoId?: string;
   /** `alertdialog` para confirmações destrutivas (ex.: apagar dados). */
   tipo?: 'dialog' | 'alertdialog';
   /** `drawer` — painel lateral de 440px (UX §4.6: "Anotar no caderno"/"Corrigir lançamento"), em vez da folha centralizada padrão. */
@@ -24,6 +26,7 @@ export function Dialog({
   aberto,
   titulo,
   tituloId,
+  descricaoId,
   tipo = 'dialog',
   variante = 'dialog',
   onFechar,
@@ -56,6 +59,7 @@ export function Dialog({
       class={variante}
       role={tipo}
       aria-labelledby={tituloId}
+      aria-describedby={descricaoId}
       onClose={aoFecharNativo}
       onCancel={aoFecharNativo}
     >
