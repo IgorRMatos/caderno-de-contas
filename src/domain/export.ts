@@ -12,24 +12,29 @@ export const CABECALHO_EXPORT = ['data', 'descricao', 'valor', 'tipo', 'categori
 const SEPARADOR = ';';
 const BOM = String.fromCharCode(0xfeff);
 
-/** Primeiros caracteres que fazem Excel/Sheets/LibreOffice tratar a célula como fórmula. */
-const INICIO_FORMULA = /^[=+\-@\t\r]/;
+/**
+ * O que recebe o `'` na exportação: os primeiros caracteres que fazem
+ * Excel/Sheets/LibreOffice tratar a célula como fórmula, ou um `'` que já estava lá.
+ */
+const PRECISA_PREFIXO = /^[=+\-@\t\r']/;
 
 /**
  * D11 — neutraliza injeção de fórmula (CSV injection): célula que começa com
  * `= + - @ \t \r` ganha um `'` na frente, que as planilhas mostram como texto.
+ * Uma célula que já começa com `'` também ganha outro, para a importação
+ * saber que o primeiro é nosso (ida e volta exata, ex.: `'=x` → `''=x` → `'=x`).
  */
 export function neutralizarFormula(celula: string): string {
-  return INICIO_FORMULA.test(celula) ? `'${celula}` : celula;
+  return PRECISA_PREFIXO.test(celula) ? `'${celula}` : celula;
 }
 
 /**
  * Inverso de `neutralizarFormula`, usado na importação para a ida e volta
  * exportar → importar devolver o mesmo texto. Só remove o `'` quando ele vem
- * seguido de um caractere de fórmula (ou seja, quando fomos nós que pusemos).
+ * seguido de caractere de fórmula ou de outro `'` (ou seja, quando fomos nós que pusemos).
  */
 export function desneutralizarFormula(celula: string): string {
-  return celula.length > 1 && celula[0] === "'" && INICIO_FORMULA.test(celula.slice(1))
+  return celula.length > 1 && celula[0] === "'" && PRECISA_PREFIXO.test(celula.slice(1))
     ? celula.slice(1)
     : celula;
 }

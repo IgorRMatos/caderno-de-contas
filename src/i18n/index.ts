@@ -88,11 +88,11 @@ export function t(chave: string, params?: Record<string, string | number>): stri
     nome in params ? String(params[nome]) : match,
   );
   // Nota da Rosetta (revisão T5.1): formatarMesPorExtenso devolve minúsculas
-  // ("outubro de 2026"). Quando o template começa com um {param} (em geral
-  // {mes}), capitaliza a 1ª letra do resultado; frases que já começam com
-  // texto literal (inclusive anotações que ficam minúsculas de propósito,
-  // como "últimos {n} meses") não são tocadas.
-  if (template.startsWith('{') && resultado.length > 0) {
+  // ("outubro de 2026"). Quando o template começa com {mes}, capitaliza a 1ª
+  // letra do resultado. SÓ {mes}: outros params no início são texto do
+  // usuário ou nome de arquivo ({nome}, {arquivo}: "caderno-2026-11-04.csv"
+  // não pode virar "Caderno-…", bug do QA no T12) e ficam como vieram.
+  if (template.startsWith('{mes}') && resultado.length > 0) {
     return resultado.charAt(0).toLocaleUpperCase(LOCALE_INTL[idioma]) + resultado.slice(1);
   }
   return resultado;

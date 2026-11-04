@@ -121,6 +121,7 @@ describe('exportarDados — CA12.2', () => {
     expect(texto).toContain(";'=1+1;");
     expect(fetchSpy).not.toHaveBeenCalled();
     expect(toasts.value[0]).toMatchObject({ tipo: 'ok', titulo: 'Cópia baixada' });
-    expect(toasts.value[0]!.mensagem).toContain('2 lançamentos');
+    expect(toasts.value[0]!.mensagem).toBe(`${cliques[0]!.download} com 2 lançamentos.`);
+    expect(toasts.value[0]!.mensagem).toMatch(/^caderno-/);
   });
 });

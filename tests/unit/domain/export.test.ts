@@ -90,13 +90,19 @@ describe('export — neutralizar fórmula (CSV injection, D11)', () => {
 
   it('texto comum não muda', () => {
     expect(neutralizarFormula('Farinha')).toBe('Farinha');
-    expect(neutralizarFormula("'citação")).toBe("'citação");
+    expect(neutralizarFormula('Pão de queijo')).toBe('Pão de queijo');
     expect(neutralizarFormula('')).toBe('');
+  });
+
+  it("célula que já começa com ' ganha outro (para a ida e volta saber qual é nosso)", () => {
+    expect(neutralizarFormula("'citação")).toBe("''citação");
+    expect(neutralizarFormula("'=x")).toBe("''=x");
   });
 
   it('desneutralizar só tira o apóstrofo que o export pôs', () => {
     expect(desneutralizarFormula("'=SOMA(A1)")).toBe('=SOMA(A1)');
     expect(desneutralizarFormula("'citação")).toBe("'citação");
+    expect(desneutralizarFormula("''=x")).toBe("'=x");
     expect(desneutralizarFormula("'")).toBe("'");
   });
 
@@ -122,6 +128,8 @@ describe('export — ida e volta: exportar → importar = mesmos lançamentos (D
     const lista = [
       lanc({ descricao: '=SOMA(A1:A9)', categoria: 'embalagens-kraft' }),
       lanc({ descricao: '-10% fornecedor', valorCentavos: 1 }),
+      lanc({ descricao: "'=x já veio com apóstrofo" }),
+      lanc({ descricao: "'citação" }),
       lanc({ descricao: '+ venda extra', tipo: 'entrada', categoria: 'vendas' }),
       lanc({ descricao: '@loja "centro"; balcão', valorCentavos: 123456789 }),
       lanc({ descricao: 'Pão\nde queijo', data: '2025-12-31', valorCentavos: 100 }),

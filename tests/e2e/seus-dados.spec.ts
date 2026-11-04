@@ -44,7 +44,12 @@ test.describe('T12 — Seus dados: exportar → apagar → reimportar (CA12.1–
     expect(texto.split('\n')[0]).toBe('data;descricao;valor;tipo;categoria');
     const linhasExportadas = texto.trim().split('\n').length - 1;
     expect(linhasExportadas).toBeGreaterThan(0);
-    await expect(page.locator('.toast.ok').first()).toContainText('Cópia baixada');
+    const toastCopia = page.locator('.toast.ok').first();
+    await expect(toastCopia).toContainText('Cópia baixada');
+    // texto completo: o nome do arquivo NÃO pode ganhar maiúscula (bug do QA no T12)
+    await expect(toastCopia).toContainText(
+      `${download.suggestedFilename()} com ${linhasExportadas} lançamentos.`,
+    );
 
     // CA12.3 — apagar pelo rodapé: alertdialog, foco em "Não, manter tudo"
     await page.locator('.footer').getByRole('button', { name: 'Apagar meus dados' }).click();

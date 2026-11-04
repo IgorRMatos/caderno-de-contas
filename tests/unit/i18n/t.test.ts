@@ -52,6 +52,30 @@ describe('t() — plural via Intl.PluralRules (D9)', () => {
   });
 });
 
+describe('t() — maiúscula inicial só para {mes} (revisão T5.1; bug do QA no T12)', () => {
+  it('nome de arquivo no início fica como veio, nos 3 idiomas', async () => {
+    const p1 = { arquivo: 'caderno-2026-11-04.csv', n: 6 };
+    expect(t('seusDados.copiaBaixadaDetalhe', p1)).toBe(
+      'caderno-2026-11-04.csv com 6 lançamentos.',
+    );
+    expect(t('dropzone.lendoDetalhe', { nome: 'vendas.csv', n: 2 })).toMatch(/^vendas\.csv · 2 /);
+    await carregarIdioma('es');
+    expect(t('seusDados.copiaBaixadaDetalhe', { arquivo: 'caderno-x.csv', n: 1 })).toBe(
+      'caderno-x.csv con 1 movimiento.',
+    );
+    await carregarIdioma('en');
+    expect(t('seusDados.copiaBaixadaDetalhe', { arquivo: 'caderno-x.csv', n: 1 })).toBe(
+      'caderno-x.csv with 1 entry.',
+    );
+  });
+
+  it('{mes} no início continua com maiúscula', () => {
+    expect(t('manchete.semComparacao', { mes: 'outubro de 2026', valor: 'R$ 10,00' })).toBe(
+      'Outubro de 2026 sobrou R$ 10,00.',
+    );
+  });
+});
+
 describe('carregarIdioma — es/en por import() dinâmico (D9/D14)', () => {
   it('troca o idioma ativo e passa a usar o dicionário carregado', async () => {
     expect(idiomaAtivo()).toBe('pt-BR');
