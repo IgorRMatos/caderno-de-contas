@@ -1,0 +1,184 @@
+/* ==========================================================================
+   Caderno — tokens e base (portado de mockups/caderno.css, sem .mock-nav)
+   ========================================================================== */
+
+/* ---------- Tokens: tema claro (padrão) ---------- */
+:root, [data-theme='light'] {
+  color-scheme: light;
+  --paper: #f5eedc; /* fundo: papel de caderno */
+  --sheet: #fbf6ea; /* folha solta / área de leitura */
+  --ink: #2b2520; /* tinta principal  13:1 */
+  --ink-2: #5c5248; /* tinta secundária 6.6:1 */
+  --rule: #c9d3d6; /* linhas do caderno (decorativo) */
+  --margin-line: #d9a08e; /* linha da margem (decorativo) */
+  --olive: #4f6128; /* lucro / entrada / sucesso 5.9:1 */
+  --terra: #a3432a; /* prejuízo / saída / erro 5.4:1 */
+  --mustard: #7a5a06; /* atenção (texto/ícone) 5.5:1 */
+  --pencil: #6b645a; /* projeção / grafite 5.1:1 */
+  --hl: #f2dc7a; /* marca-texto (só com --ink por cima) */
+  --post-ok: #e4e8c8;
+  --post-warn: #f6e2a0;
+  --post-err: #f3d3c5;
+  --tape: rgba(255, 255, 255, 0.55);
+  --shadow-paper: 0 1px 0 rgba(43, 37, 32, 0.06), 0 6px 14px -8px rgba(43, 37, 32, 0.35);
+  --focus: #2b2520;
+  --noise-opacity: 0.35;
+
+  /* Tipografia */
+  --f-serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --f-sans: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  --f-hand: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
+
+  --fs-xs: 0.8125rem; /* 13 */
+  --fs-sm: 0.9375rem; /* 15 */
+  --fs-md: 1.0625rem; /* 17 corpo */
+  --fs-lg: 1.375rem; /* 22 */
+  --fs-xl: 2rem; /* 32 */
+  --fs-hero: clamp(2.75rem, 9vw, 5.5rem); /* número principal */
+  --fs-hand: 1.5rem; /* anotações */
+
+  /* Ritmo do caderno: tudo alinha na pauta de 28px */
+  --line: 28px;
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+
+  /* Raios propositalmente diferentes por papel do elemento */
+  --r-sheet: 2px; /* folhas e seções */
+  --r-btn: 6px 7px 6px 8px; /* botões: levemente irregular */
+  --r-chip: 999px; /* chips de filtro */
+  --r-input: 3px;
+  --r-postit: 0 0 3px 14px; /* canto "dobrado" */
+
+  --dur-fast: 0.18s;
+  --dur: 0.32s;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- Tema escuro: grafite quente + tinta creme, nunca #000 ---------- */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #26221e;
+  --sheet: #2f2a25;
+  --ink: #f1e7d3;
+  --ink-2: #c7bba6;
+  --rule: #3d3731;
+  --margin-line: #6e4436;
+  --olive: #afc27a;
+  --terra: #ee9a7c;
+  --mustard: #e3c268;
+  --pencil: #a99f90;
+  --hl: #6b5a1e;
+  --post-ok: #3a3e2a;
+  --post-warn: #4a3f22;
+  --post-err: #4a2f27;
+  --tape: rgba(241, 231, 211, 0.12);
+  --shadow-paper: 0 1px 0 rgba(0, 0, 0, 0.25), 0 8px 18px -8px rgba(0, 0, 0, 0.6);
+  --focus: #f1e7d3;
+  --noise-opacity: 0.18;
+}
+/* Sem escolha salva: segue o sistema (D7 cobre o flash via script inline) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --paper: #26221e;
+    --sheet: #2f2a25;
+    --ink: #f1e7d3;
+    --ink-2: #c7bba6;
+    --rule: #3d3731;
+    --margin-line: #6e4436;
+    --olive: #afc27a;
+    --terra: #ee9a7c;
+    --mustard: #e3c268;
+    --pencil: #a99f90;
+    --hl: #6b5a1e;
+    --post-ok: #3a3e2a;
+    --post-warn: #4a3f22;
+    --post-err: #4a2f27;
+    --tape: rgba(241, 231, 211, 0.12);
+    --focus: #f1e7d3;
+    --noise-opacity: 0.18;
+  }
+}
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--f-sans);
+  font-size: var(--fs-md);
+  line-height: var(--line);
+  color: var(--ink);
+  background-color: var(--paper);
+  /* textura de papel (ruído SVG) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .3 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+  overflow-x: hidden;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--f-serif);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+p {
+  margin: 0 0 var(--s3);
+}
+a {
+  color: inherit;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.num {
+  font-family: var(--f-serif);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.hand {
+  font-family: var(--f-hand);
+  font-size: var(--fs-hand);
+  line-height: 1.1;
+  color: var(--ink-2);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
