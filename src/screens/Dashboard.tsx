@@ -1,10 +1,14 @@
 import { t } from '../i18n/index.js';
+import { BannerExemplo } from '../ui/BannerExemplo.js';
 
-/** Placeholder do T6 — o dashboard editorial de verdade chega no T9. */
+/** T8: banner de dados de exemplo. O dashboard editorial de verdade chega no T9. */
 export function Dashboard() {
   return (
-    <section class="card">
-      <h2>{t('secoes.oQueNotei')}</h2>
-    </section>
+    <>
+      <BannerExemplo />
+      <section class="card">
+        <h2>{t('secoes.oQueNotei')}</h2>
+      </section>
+    </>
   );
 }
