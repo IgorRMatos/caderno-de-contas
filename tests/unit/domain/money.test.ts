@@ -11,20 +11,24 @@ function normalizarEspacos(s: string): string {
   return s.replace(/\u00A0/g, ' ');
 }
 
-describe('inferirSeparadorDecimal (D3 — por coluna)', () => {
+describe('inferirSeparadorDecimal (D3 — por coluna, revisado em 2026-11-04)', () => {
   it('ambos os separadores presentes: o mais à direita é o decimal', () => {
-    expect(inferirSeparadorDecimal(['1.234,56'], 'pt-BR')).toBe(',');
-    expect(inferirSeparadorDecimal(['1,234.56'], 'en')).toBe('.');
+    expect(inferirSeparadorDecimal(['1.234,56'])).toBe(',');
+    expect(inferirSeparadorDecimal(['1,234.56'])).toBe('.');
   });
 
   it('só um separador, seguido de 1-2 dígitos no fim: ele é o decimal', () => {
-    expect(inferirSeparadorDecimal(['12,50', '7,5'], 'pt-BR')).toBe(',');
-    expect(inferirSeparadorDecimal(['12.50', '7.5'], 'en')).toBe('.');
+    expect(inferirSeparadorDecimal(['12,50', '7,5'])).toBe(',');
+    expect(inferirSeparadorDecimal(['12.50', '7.5'])).toBe('.');
   });
 
-  it('só grupos de 3 (ambíguo): cai para o idioma ativo', () => {
-    expect(inferirSeparadorDecimal(['12.500', '1.200'], 'pt-BR')).toBe(',');
-    expect(inferirSeparadorDecimal(['12.500', '1.200'], 'en')).toBe('.');
+  it('só grupos de 3 (ambíguo): null — sem decimal, em qualquer idioma (idioma não decide mais isso)', () => {
+    expect(inferirSeparadorDecimal(['12.500', '1.200'])).toBeNull();
+    expect(inferirSeparadorDecimal(['12,500', '1,200'])).toBeNull();
+  });
+
+  it('sem nenhum separador: null', () => {
+    expect(inferirSeparadorDecimal(['1234', '5678'])).toBeNull();
   });
 });
 
@@ -57,12 +61,22 @@ describe('parseValorPlanilha (D3)', () => {
     expect(parseValorPlanilha('1234', ',')).toEqual({ ok: true, centavos: 123400 });
   });
 
-  it('12.500 na coluna pt (separador decimal é vírgula) → 1.250.000 centavos (ponto é milhar)', () => {
-    expect(parseValorPlanilha('12.500', ',')).toEqual({ ok: true, centavos: 1250000 });
+  it('decimalChar null (grupo de 3, sem decimal) → separador tratado como milhar, em qualquer idioma', () => {
+    expect(parseValorPlanilha('12.500', null)).toEqual({ ok: true, centavos: 1250000 });
+    expect(parseValorPlanilha('12,500', null)).toEqual({ ok: true, centavos: 1250000 });
   });
 
-  it('12.500 na coluna en (separador decimal é ponto) → 1250 centavos (12,500 = 12.5)', () => {
-    expect(parseValorPlanilha('12.500', '.')).toEqual({ ok: true, centavos: 1250 });
+  it('D3 revisado (2026-11-04): "1,234" com coluna pt e "1.234" com coluna en → 123400 (idioma não decide mais o parse)', () => {
+    // nos dois casos, inferirSeparadorDecimal(['1,234']) e inferirSeparadorDecimal(['1.234'])
+    // caem no "só grupo de 3" → null → separador é milhar, não decimal.
+    expect(parseValorPlanilha('1,234', inferirSeparadorDecimal(['1,234']))).toEqual({
+      ok: true,
+      centavos: 123400,
+    });
+    expect(parseValorPlanilha('1.234', inferirSeparadorDecimal(['1.234']))).toEqual({
+      ok: true,
+      centavos: 123400,
+    });
   });
 
   it('célula vazia ou só símbolos → inválida', () => {

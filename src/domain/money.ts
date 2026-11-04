@@ -33,15 +33,18 @@ function limparValorBruto(bruto: string): { textoLimpo: string; negativo: boolea
 }
 
 /**
- * D3 — infere o separador decimal **da coluna inteira**, não célula a célula:
+ * D3 (revisado pelo Tech Lead em 2026-11-04) — infere o separador decimal
+ * **da coluna inteira**, não célula a célula, e o idioma ativo não decide
+ * mais nada aqui:
  * 1) se alguma célula tem `.` e `,`, o último dos dois (mais à direita) é o decimal;
  * 2) senão, se o último separador de alguma célula é seguido só de 1–2 dígitos, ele é o decimal;
- * 3) senão (só grupos de 3, ambíguo), usa o idioma ativo: pt/es → `,`; en → `.`.
+ * 3) senão (só grupos de 3, ou nenhum separador) → `null`: **sem decimal**,
+ *    qualquer separador presente é agrupador de milhar, em qualquer idioma.
+ *    Motivo: dinheiro não tem 3 casas decimais; decidir por idioma fazia uma
+ *    planilha americana ('1,234') virar 1,234 com o app em pt-BR, e uma
+ *    planilha brasileira ('1.234') virar 1,234 com o app em en.
  */
-export function inferirSeparadorDecimal(
-  valoresBrutos: readonly string[],
-  idiomaAtivo: Idioma,
-): SeparadorDecimal {
+export function inferirSeparadorDecimal(valoresBrutos: readonly string[]): SeparadorDecimal | null {
   const limpos = valoresBrutos.map((v) => limparValorBruto(v).textoLimpo).filter((v) => v !== '');
 
   for (const v of limpos) {
@@ -61,22 +64,22 @@ export function inferirSeparadorDecimal(
     }
   }
 
-  return idiomaAtivo === 'en' ? '.' : ',';
+  return null;
 }
 
 /**
- * D3 — parse de uma célula já conhecendo o separador decimal da coluna
- * (achado por `inferirSeparadorDecimal`). Qualquer outro separador presente
- * é tratado como agrupador de milhar e descartado.
+ * D3 — parse de uma célula já sabendo o separador decimal da coluna (achado
+ * por `inferirSeparadorDecimal`). `decimalChar === null` → não há decimal:
+ * todo separador presente é agrupador de milhar e é descartado.
  */
 export function parseValorPlanilha(
   bruto: string,
-  decimalChar: SeparadorDecimal,
+  decimalChar: SeparadorDecimal | null,
 ): ResultadoParseValor {
   const { textoLimpo, negativo } = limparValorBruto(bruto);
   if (textoLimpo === '') return { ok: false };
 
-  const idx = textoLimpo.lastIndexOf(decimalChar);
+  const idx = decimalChar === null ? -1 : textoLimpo.lastIndexOf(decimalChar);
   const parteInteira =
     idx === -1 ? textoLimpo.replace(/[^\d]/g, '') : textoLimpo.slice(0, idx).replace(/[^\d]/g, '');
   const parteDecimal = idx === -1 ? '' : textoLimpo.slice(idx + 1).replace(/[^\d]/g, '');

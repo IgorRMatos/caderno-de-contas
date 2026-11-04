@@ -66,7 +66,7 @@ export function processarTabela(
     .map((l) => celulaString(l[colunaData]))
     .filter((v): v is string => v !== undefined);
 
-  const decimalChar = inferirSeparadorDecimal(valoresBrutos, idiomaAtivo);
+  const decimalChar = inferirSeparadorDecimal(valoresBrutos);
   const ordemData = inferirOrdemData(datasBrutas, idiomaAtivo);
 
   const lancamentos: Lancamento[] = [];
